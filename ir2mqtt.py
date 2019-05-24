@@ -5,16 +5,19 @@ import time
 import paho.mqtt.client as mqtt
 import configparser
 import yaml
+import serial
 
 debug = False
-simulate = False
+useSerial = False
 
 # this is our State class, with some helpful variables
 class State:
     ir_connected = False
-    last_we_setup_tick = -1
     date_time = -1
-
+    pitFlags = -1
+    pitFuel = -1
+    tick = 0
+ 
 mqttRC = ['Connection successful', 
           'Connection refused - incorrect protocol version', 
           'Connection refused - invalid client identifier', 
@@ -22,74 +25,70 @@ mqttRC = ['Connection successful',
           'Connection refused - bad username or password', 
           'Connection refused - not authorised']
 
-class SimData(dict):
-    yamlData = None
-    telemetryData = None
-
-    def __init__(self, name):
-        self.name = name
-        
-    def load(self, sessionDataFile, telemetryDataFile):
-        with open(sessionDataFile, 'r') as stream:
-            try:
-                self.yamlData = yaml.safe_load(stream)
-            except yaml.YAMLError as exc:
-                print(exc)
-        with open(telemetryDataFile, 'r') as stream:
-            try:
-                self.telemetryData = stream.readlines()
-                for line in self.telemetryData:
-                    property = line.split(' ', 1)
-                    self.yamlData[property[0].strip()] = property[1].strip() 
-            except Exception as e:
-                print(e)
-
-simData = SimData('simData')
-
 # here we check if we are connected to iracing
 # so we can retrieve some data
-def check_iracing():
+def check_iracing():        
+    
     if state.ir_connected and not (ir.is_initialized and ir.is_connected):
         state.ir_connected = False
         # don't forget to reset all your in State variables
-        state.last_car_setup_tick = -1
+        state.date_time = -1
+        state.pitFlags = -1
+        state.pitFuel = -1
+        state.tick = 0
+
+        if useSerial:
+            ser.close()
+
         # we are shut down ir library (clear all internal variables)
         ir.shutdown()
         print('irsdk disconnected')
         mqtt_publish('state', 0)
-       
+    elif not state.ir_connected:
+        if config.has_option('global', 'simulate'):
+            is_startup = ir.startup(test_file=config['global']['simulate'])
+            print('starting up using dump file: ' + str(config['global']['simulate']))
+        else:
+            is_startup = ir.startup()
+            print('DEBUG: starting up with simulation')
 
-    elif not state.ir_connected and ir.startup() and ir.is_initialized and ir.is_connected:
-        state.ir_connected = True
-        print('irsdk connected')
-        mqtt_publish('state', 1)
+        if is_startup and ir.is_initialized and ir.is_connected:
+            state.ir_connected = True
+            if useSerial:
+                ser.open()
+            print('irsdk connected')
+            mqtt_publish('state', 1)
 
 def publishSessionTime():
-    if not simulate:
-        sToD = ir['SessionTimeOfDay']
-    else:
-        sToD = simData.yamlData['SessionTimeOfDay']
+    sToD = ir['SessionTimeOfDay']
 
     tod = time.strftime("%H:%M:%S", time.gmtime(float(sToD)))
     date = time.strftime("%Y-%m-%d")
 
-    if not simulate:
-        we = ir['WeekendInfo']['WeekendOptions']
-    else:
-        we = simData.yamlData['WeekendInfo']['WeekendOptions']
+    we = ir['WeekendInfo']['WeekendOptions']
         
     if we:
-        if not simulate:
-            we_tick = ir.get_session_info_update_by_key('WeekendOptions')
-            if we_tick != state.last_we_setup_tick:
-                date = we['Date']
-        else:
-            date = simData.yamlData['WeekendInfo']['WeekendOptions']['Date']
+        date = we['Date']
 
     state.date_time = str(date) + 'T' + tod + '+0200'
     print('session ToD:', state.date_time)
     mqtt_publish('ToD', state.date_time)
-    
+
+def writeSerialData():
+    pit_svflags = ir['PitSvFlags']
+    if state.pitFlags != pit_svflags:
+        ser.write(('#PFL=' + str(pit_svflags) + '*').encode('ascii'))
+        state.pitFlags = pit_svflags
+        if debug:
+            print('DEBUG: serial(' + '#PFL=' + str(pit_svflags) + '*' + ')')
+
+    pit_svfuel = ir['PitSvFuel']
+    if state.pitFuel != pit_svfuel:
+        ser.write(('#PFU=' + str(pit_svfuel) + '*').encode('ascii'))
+        state.pitFuel = pit_svfuel
+        if debug:
+            print('DEBUG: serial(' + '#PFU=' + str(pit_svfuel) + '*' + ')')
+
 # our main loop, where we retrieve data
 # and do something useful with it
 def loop():
@@ -99,37 +98,28 @@ def loop():
     # because sometimes while you retrieve one CarIdxXXX variable
     # another one in next line of code can be changed
     # to the next iracing internal tick_count
-    if not simulate:
-        ir.freeze_var_buffer_latest()
+    ir.freeze_var_buffer_latest()
 
-    publishSessionTime()
+    state.tick += 1
+    if state.tick % 60 == 1:
+        publishSessionTime()
     
-    # retrieve live telemetry data
-    # check here for list of available variables
-    # https://github.com/kutu/pyirsdk/blob/master/vars.txt
-    # this is not full list, because some cars has additional
-    # specific variables, like break bias, wings adjustment, etc
-
-    if config.has_section('iracing'):
-        for top in config['iracing']:
-            ind = config.get('iracing', top).split('/')
-            if not simulate:
+        if config.has_section('iracing'):
+            for top in config['iracing']:
+                ind = config.get('iracing', top).split('/')
                 val = ir
                 for key in ind:
                     if val != None:
-                        val = val.__getitem__(key)
-            else:
-                val = simData.yamlData
-                for key in ind:
-                    if val != None:
                         if isinstance(val, list):
-                            val = val[0].get(key)
+                            val = val[0].__getitem__(key)
                         else:
-                            val = val.get(key)
+                            val = val.__getitem__(key)
 
-            if val != None:
-                mqtt_publish(top, val)
-                
+                if val != None:
+                    mqtt_publish(top, val)
+    
+    if ser.is_open:
+        writeSerialData()
 
     # and just as an example
     # you can send commands to iracing
@@ -146,7 +136,7 @@ def mqtt_publish(topic, data):
     top = config['mqtt']['baseTopic'] + '/' + topic
     mqttClient.publish(top, data)
     if debug:
-        print('DEBUG mqtt_publish(' + top + ', ' + data + ')')
+        print('DEBUG mqtt_publish(' + top + ', ' + str(data) + ')')
     
 def on_connect(client, userdata, flags, rc):
     print('MQTT: ' + mqttRC[rc])
@@ -184,12 +174,8 @@ if __name__ == '__main__':
         debug = config.getboolean('global', 'debug')
         print('Debug output enabled')
 
-    if config.has_option('global', 'sessionData'):
-        simulate = True
-        simData.load(config['global']['sessionData'], config['global']['telemetryData'])
-        
-    # initializing ir and state
     ir = irsdk.IRSDK()
+    # initializing ir and state
     state = State()
     
     mqttClient = mqtt.Client("irClient")
@@ -201,15 +187,18 @@ if __name__ == '__main__':
     except Exception:
         print('unable to connect to mqtt broker')
 
+    ser = serial.Serial()
+    if config.has_option('global', 'serial'):
+        ser.port =  config['global']['serial']
+        ser.baudrate = 9600
+        useSerial = True
+        print('using COM port: ' + str(ser.port))
 
     try:
         # infinite loop
         while True:
             # check if we are connected to iracing
-            if not simulate:
-                check_iracing()
-            else:
-                state.ir_connected = True
+            check_iracing()
                 
             # if we are, then process data
             if state.ir_connected:
@@ -217,13 +206,17 @@ if __name__ == '__main__':
             # sleep for 1 second
             # maximum you can use is 1/60
             # cause iracing update data with 60 fps
-            time.sleep(int(config['global']['loopDelay']))
+            
+            time.sleep(1)
     except KeyboardInterrupt:
         # press ctrl+c to exit
         print('exiting')
         if state.ir_connected:
             mqtt_publish('state', 0)
         
+        if useSerial and ser.is_open:
+            ser.close()
+
         mqttClient.loop_stop()
         mqttClient.disconnect()
         time.sleep(2)
