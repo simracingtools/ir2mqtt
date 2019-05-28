@@ -6,6 +6,12 @@ import paho.mqtt.client as mqtt
 import configparser
 import yaml
 import serial
+import astral
+import timezonefinder
+import pytz
+from datetime import datetime
+from datetime import date
+from irsdk import PitCommandMode
 
 debug = False
 useSerial = False
@@ -55,10 +61,17 @@ def check_iracing():
 
         if is_startup and ir.is_initialized and ir.is_connected:
             state.ir_connected = True
-            if useSerial:
-                ser.open()
+            try:
+                if useSerial:
+                    ser.open()
+            except Exception as ex:
+                print('Unable to open port ' + ser.port + '. Serial communication is disabled')
+                useSerial = False
+                    
             print('irsdk connected')
             mqtt_publish('state', 1)
+            if useSerial:
+                writeSerialData()
 
 def publishSessionTime():
     sToD = ir['SessionTimeOfDay']
@@ -71,24 +84,60 @@ def publishSessionTime():
     if we:
         date = we['Date']
 
-    state.date_time = str(date) + 'T' + tod + '+0200'
-    print('session ToD:', state.date_time)
-    mqtt_publish('ToD', state.date_time)
+    state.date_time = str(date) + 'T' + tod
+    print('session ToD:', state.date_time  + str(config['mqtt']['timezone']))
+    mqtt_publish('ToD', state.date_time + str(config['mqtt']['timezone']))
+    publishLightInfo(state.date_time)
+
+def publishLightInfo(dateAndTime):
+    lat = str(ir['WeekendInfo']['TrackLatitude']).rstrip(' m')
+    lon = str(ir['WeekendInfo']['TrackLongitude']).rstrip(' m')
+    alt = str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m')
+    print(lat + ', ' + lon + ', ' + alt)
+
+    timezone_str = timeZoneFinder.closest_timezone_at(lng=float(lon), lat=float(lat))
+
+    if timezone_str is None:
+        print("Could not determine the time zone")
+    else:
+        # Display the current time in that time zone
+        print(timezone_str)
+        timezone = pytz.timezone(timezone_str)
+        times = geoTime.sun_utc(date.fromisoformat(dateAndTime), float(lat), float(lon), float(alt))
+        for light in times:
+            utcOffset = timezone.utcoffset(times[light])
+            dt = timezone.localize(times[light])
+            print(light + ': ' + str(dt)) 
+    
 
 def writeSerialData():
     pit_svflags = ir['PitSvFlags']
     if state.pitFlags != pit_svflags:
         ser.write(('#PFL=' + str(pit_svflags) + '*').encode('ascii'))
         state.pitFlags = pit_svflags
-        if debug:
-            print('DEBUG: serial(' + '#PFL=' + str(pit_svflags) + '*' + ')')
+        print('SERIAL> ' + '#PFL=' + str(pit_svflags) + '*')
 
     pit_svfuel = ir['PitSvFuel']
     if state.pitFuel != pit_svfuel:
         ser.write(('#PFU=' + str(pit_svfuel) + '*').encode('ascii'))
         state.pitFuel = pit_svfuel
-        if debug:
-            print('DEBUG: serial(' + '#PFU=' + str(pit_svfuel) + '*' + ')')
+        print('SERIAL> ' + '#PFU=' + str(pit_svfuel) + '*')
+
+def readSerialData(): 
+    telegram = ser.readline()
+    print('SERIAL< ' + str(telegram))
+    telegram = telegram.lstrip('#').rstrip('*\n')
+    keyvalue = telegram.split('=')
+    
+    if len(keyvalue) == 2:
+        if keyvalue[0] == 'PFU':
+            if debug:
+                print('DEBUG: send fuel pit command ' + int(keyvalue[1]) + ' l')
+            ir.pit_command(PitCommandMode.fuel , int(keyvalue[1]))
+        if keyvalue[0] == 'PCM':
+            if debug:
+                print('DEBUG: send pit command ' + int(keyvalue[1]))
+            ir.pit_command(int(keyvalue[1]))
 
 # our main loop, where we retrieve data
 # and do something useful with it
@@ -119,19 +168,10 @@ def loop():
                 if val != None:
                     mqtt_publish(top, val)
     
-    if ser.is_open:
+    if useSerial and ser.is_open:
         writeSerialData()
+        readSerialData()
 
-    # and just as an example
-    # you can send commands to iracing
-    # like switch cameras, rewind in replay mode, send chat and pit commands, etc
-    # check pyirsdk.py library to see what commands are available
-    # https://github.com/kutu/pyirsdk/blob/master/irsdk.py#L332
-    # when you run this script, camera will be switched to P1
-    # and very first camera in list of cameras in iracing
-    # while script is running, change camera by yourself in iracing
-    # and how it changed back every 1 sec
-    #ir.cam_switch_pos(0, 1)
 
 def mqtt_publish(topic, data):
     top = config['mqtt']['baseTopic'] + '/' + topic
@@ -192,9 +232,14 @@ if __name__ == '__main__':
     if config.has_option('global', 'serial'):
         ser.port =  config['global']['serial']
         ser.baudrate = 9600
+        ser.timeout = 1
         useSerial = True
         print('using COM port: ' + str(ser.port))
 
+    geoTime = astral.Astral()
+    geoTime.solar_depression = 'civil'
+    timeZoneFinder = timezonefinder.TimezoneFinder()
+    
     try:
         # infinite loop
         while True:
@@ -204,10 +249,10 @@ if __name__ == '__main__':
             # if we are, then process data
             if state.ir_connected:
                 loop()
+
             # sleep for 1 second
             # maximum you can use is 1/60
             # cause iracing update data with 60 fps
-            
             time.sleep(1)
     except KeyboardInterrupt:
         # press ctrl+c to exit
