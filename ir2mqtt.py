@@ -64,6 +64,8 @@ def check_iracing():
                     
             print('irsdk connected')
             mqtt_publish('state', 1)
+            if useSerial:
+                writeSerialData()
 
 def publishSessionTime():
     sToD = ir['SessionTimeOfDay']

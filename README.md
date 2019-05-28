@@ -47,7 +47,8 @@ the same directory as the script/application is executed.
 	serial = COM3
 	
 	# Uncomment to start the application using a data dump file from irsdk for 
-	# testing/development purposes. 
+	# testing/development purposes. The dump file can be created
+	# issuing the command 'irsdk --dump data.dmp'
 	;simulate = data.dump
 	
 	[mqtt]
