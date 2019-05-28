@@ -6,6 +6,7 @@ import paho.mqtt.client as mqtt
 import configparser
 import yaml
 import serial
+from irsdk import PitCommandMode
 
 debug = False
 useSerial = False
@@ -54,8 +55,13 @@ def check_iracing():
 
         if is_startup and ir.is_initialized and ir.is_connected:
             state.ir_connected = True
-            if useSerial:
-                ser.open()
+            try:
+                if useSerial:
+                    ser.open()
+            except Exception as ex:
+                print('Unable to open port ' + ser.port + '. Serial communication is disabled')
+                useSerial = False
+                    
             print('irsdk connected')
             mqtt_publish('state', 1)
 
@@ -79,15 +85,29 @@ def writeSerialData():
     if state.pitFlags != pit_svflags:
         ser.write(('#PFL=' + str(pit_svflags) + '*').encode('ascii'))
         state.pitFlags = pit_svflags
-        if debug:
-            print('DEBUG: serial(' + '#PFL=' + str(pit_svflags) + '*' + ')')
+        print('SERIAL> ' + '#PFL=' + str(pit_svflags) + '*')
 
     pit_svfuel = ir['PitSvFuel']
     if state.pitFuel != pit_svfuel:
         ser.write(('#PFU=' + str(pit_svfuel) + '*').encode('ascii'))
         state.pitFuel = pit_svfuel
-        if debug:
-            print('DEBUG: serial(' + '#PFU=' + str(pit_svfuel) + '*' + ')')
+        print('SERIAL> ' + '#PFU=' + str(pit_svfuel) + '*')
+
+def readSerialData(): 
+    telegram = ser.readline()
+    print('SERIAL< ' + str(telegram))
+    telegram = telegram.lstrip('#').rstrip('*\n')
+    keyvalue = telegram.split('=')
+    
+    if len(keyvalue) == 2:
+        if keyvalue[0] == 'PFU':
+            if debug:
+                print('DEBUG: send fuel pit command ' + int(keyvalue[1]) + ' l')
+            ir.pit_command(PitCommandMode.fuel , int(keyvalue[1]))
+        if keyvalue[0] == 'PCM':
+            if debug:
+                print('DEBUG: send pit command ' + int(keyvalue[1]))
+            ir.pit_command(int(keyvalue[1]))
 
 # our main loop, where we retrieve data
 # and do something useful with it
@@ -120,17 +140,8 @@ def loop():
     
     if useSerial and ser.is_open:
         writeSerialData()
+        readSerialData()
 
-    # and just as an example
-    # you can send commands to iracing
-    # like switch cameras, rewind in replay mode, send chat and pit commands, etc
-    # check pyirsdk.py library to see what commands are available
-    # https://github.com/kutu/pyirsdk/blob/master/irsdk.py#L332
-    # when you run this script, camera will be switched to P1
-    # and very first camera in list of cameras in iracing
-    # while script is running, change camera by yourself in iracing
-    # and how it changed back every 1 sec
-    #ir.cam_switch_pos(0, 1)
 
 def mqtt_publish(topic, data):
     top = config['mqtt']['baseTopic'] + '/' + topic
@@ -191,6 +202,7 @@ if __name__ == '__main__':
     if config.has_option('global', 'serial'):
         ser.port =  config['global']['serial']
         ser.baudrate = 9600
+        ser.timeout = 1
         useSerial = True
         print('using COM port: ' + str(ser.port))
 

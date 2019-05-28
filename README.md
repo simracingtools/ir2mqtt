@@ -106,10 +106,14 @@ The basic form is
 There is no length assumption on the KEY and VALUE part but I decided to use
 short 3-letter keys because of the limited memory capacities for a microcontroller.
 
-Currently two telegrams are supported:
+Currently three telegrams are supported:
 
-	*PFL=<int>#
-	*PFU=<int>#
+	*PFL=<int>#   (outbound)
+	*PFU=<int>#   (inbound/outbound)
+	*PCM=<int>#   (inbound)
+
+Outbound means communication from application to microcontroller, inbound means
+microcontroller to application.
 
 ### PFL telegram
 
@@ -130,7 +134,39 @@ This telegram submits the PitSvFuel telemetry value. The number submitted is the
 current amount of fuel to be added during next pit stop. The unit of the value
 depends on the simulation configuration and is not taken into account in any way.
 
-### Reading telegrams on Arduino/Teensy
+On the receiving side this telegram triggers the 
+
+	irsdk.pit_command(PitCommandMode.fuel, <telegramValue>)
+
+function, submitting the telegram's VALUE as fuel amount to add. As implemented
+in IRSDK this amount is always taken in liters as unit.
+
+### PCM telegram
+
+This telegram receives a pit command and triggers the
+
+	irsdk.pit_command(<telegramValue>)
+
+function. The usable parameters are:
+
+    clear       =  0 # Clear all pit checkboxes
+    ws          =  1 # Clean the winshield, using one tear off
+    fuel        =  2 # Add fuel, optionally specify the amount to add in liters or pass '0' to use existing amount
+    lf          =  3 # Change the left front tire, optionally specifying the pressure in KPa or pass '0' to use existing pressure
+    rf          =  4 # right front
+    lr          =  5 # left rear
+    rr          =  6 # right rear
+    clear_tires =  7 # Clear tire pit checkboxes
+    fr          =  8 # Request a fast repair
+    clear_ws    =  9 # Uncheck Clean the winshield checkbox
+    clear_fr    = 10 # Uncheck request a fast repair
+    clear_fuel  = 11 # Uncheck add fuel
+
+Please note that a second parameter is not supported in the current implementation,
+so there is currently to way to change tyre pressures. For changing the refuel
+amount see PFU telegram.
+ 
+### Reading/writing telegrams on Arduino/Teensy
 
 For your convenience here a function you can use in a sketch to read the 
 telegrams from the serial port on an Arduino/Teensy microcontroller:
@@ -192,4 +228,35 @@ To evaluate the pit service flags, this structure may be helpful:
 	};
 	    
 	PitSvFlags pitFlags = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40};
- 
+
+On the sending site the pit command numbers may be helpful:
+
+	struct PitCommand {
+	    clear;       // Clear all pit checkboxes
+	    ws;          // Clean the winshield, using one tear off
+	    fuel;        // Add fuel, optionally specify the amount to add in liters or pass '0' to use existing amount
+	    lf;          // Change the left front tire, optionally specifying the pressure in KPa or pass '0' to use existing pressure
+	    rf;          // right front
+	    lr;          // left rear
+	    rr;          // right rear
+	    clear_tires; // Clear tire pit checkboxes
+	    fr;          // Request a fast repair
+	    clear_ws;    // Uncheck Clean the winshield checkbox
+	    clear_fr;    // Uncheck request a fast repair
+	    clear_fuel;  // Uncheck add fuel
+	}
+	
+	PitCommand pitCmd = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+A sending function can be implemented as follows:
+
+	void sendPitCmd(int cmd) {
+	  Serial.print("#PCM=" + String(cmd) + "*\n");
+	}
+
+	void sendPitFuelCmd(int amount) {
+	  Serial.print("#PFU=" + String(amount) + "*\n");
+	}
+
+Please not the trailing newline character. It is required as ir2mqtt uses
+the serial readline() function to receive telegrams.
