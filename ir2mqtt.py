@@ -11,10 +11,12 @@ import timezonefinder
 import pytz
 from datetime import datetime
 from datetime import date
+from datetime import time as dttime
+from datetime import tzinfo
 from irsdk import PitCommandMode
 
+version = 1.1
 debug = False
-useSerial = False
 
 # this is our State class, with some helpful variables
 class State:
@@ -23,6 +25,9 @@ class State:
     pitFlags = -1
     pitFuel = -1
     tick = 0
+    latitude = -1
+    longitude = -1
+    elevation = -1
  
 mqttRC = ['Connection successful', 
           'Connection refused - incorrect protocol version', 
@@ -42,8 +47,12 @@ def check_iracing():
         state.pitFlags = -1
         state.pitFuel = -1
         state.tick = 0
+        state.latitude = -1
+        state.longitude = -1
+        state.elevation = -1
+        state.timezone = -1
 
-        if useSerial:
+        if ser.is_open:
             ser.close()
 
         # we are shut down ir library (clear all internal variables)
@@ -62,53 +71,69 @@ def check_iracing():
         if is_startup and ir.is_initialized and ir.is_connected:
             state.ir_connected = True
             try:
-                if useSerial:
+                if config.has_option('global', 'serial'):
                     ser.open()
-            except Exception as ex:
+            except Exception:
                 print('Unable to open port ' + ser.port + '. Serial communication is disabled')
-                useSerial = False
                     
             print('irsdk connected')
             mqtt_publish('state', 1)
-            if useSerial:
+            state.latitude = float(str(ir['WeekendInfo']['TrackLatitude']).rstrip(' m'))
+            state.longitude = float(str(ir['WeekendInfo']['TrackLongitude']).rstrip(' m'))
+            state.elevation = float(str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m'))
+            state.timezone = pytz.timezone(timeZoneFinder.timezone_at(lng=state.longitude, lat=state.latitude))
+            
+            if ser.is_open:
                 writeSerialData()
 
 def publishSessionTime():
     sToD = ir['SessionTimeOfDay']
 
-    tod = time.strftime("%H:%M:%S", time.gmtime(float(sToD)))
-    date = time.strftime("%Y-%m-%d")
+    tod = time.strftime("%H:%M:%S", time.localtime(float(sToD)-3600))
+    dat = time.strftime("%Y-%m-%d")
 
     we = ir['WeekendInfo']['WeekendOptions']
         
     if we:
-        date = we['Date']
+        dat = we['Date']
 
-    state.date_time = str(date) + 'T' + tod
-    print('session ToD:', state.date_time  + str(config['mqtt']['timezone']))
-    mqtt_publish('ToD', state.date_time + str(config['mqtt']['timezone']))
+    state.date_time = datetime.strptime(dat + 'T' + tod, "%Y-%m-%dT%H:%M:%S")
+    state.date_time = datetime.combine(date.fromisoformat(dat), dttime.fromisoformat(tod), state.timezone)
+    
+    mqtt_publish('ToD', datetime.strftime(state.date_time.astimezone(pytz.timezone(config['mqtt']['timezone'])), "%Y-%m-%dT%H:%M:%S%z"))
     publishLightInfo(state.date_time)
 
 def publishLightInfo(dateAndTime):
-    lat = str(ir['WeekendInfo']['TrackLatitude']).rstrip(' m')
-    lon = str(ir['WeekendInfo']['TrackLongitude']).rstrip(' m')
-    alt = str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m')
-    print(lat + ', ' + lon + ', ' + alt)
 
-    timezone_str = timeZoneFinder.closest_timezone_at(lng=float(lon), lat=float(lat))
-
-    if timezone_str is None:
+    if state.timezone is None:
         print("Could not determine the time zone")
     else:
         # Display the current time in that time zone
-        print(timezone_str)
-        timezone = pytz.timezone(timezone_str)
-        times = geoTime.sun_utc(date.fromisoformat(dateAndTime), float(lat), float(lon), float(alt))
-        for light in times:
-            utcOffset = timezone.utcoffset(times[light])
-            dt = timezone.localize(times[light])
-            print(light + ': ' + str(dt)) 
-    
+        print('session ToD:', state.date_time.isoformat('T'))
+        times_setting = geoTime.twilight_utc(astral.SUN_SETTING, dateAndTime, state.latitude, state.longitude, state.elevation)
+        times_rising = geoTime.twilight_utc(astral.SUN_RISING, dateAndTime, state.latitude, state.longitude, state.elevation)
+        angle = geoTime.solar_elevation(dateAndTime, state.latitude, state.longitude)
+        print('solar elevation: ' + str(angle))
+        if debug:
+            print("rising start  " + str(times_rising[0].astimezone(state.timezone)))
+            print("rising end    " + str(times_rising[1].astimezone(state.timezone)))
+            print("setting start " + str(times_setting[0].astimezone(state.timezone)))
+            print("setting end   " + str(times_setting[1].astimezone(state.timezone)))
+
+        lightinfo = 'day'
+        if dateAndTime < times_rising[0].astimezone(state.timezone):
+            lightinfo = 'night'
+        elif dateAndTime < times_rising[1].astimezone(state.timezone):
+            lightinfo = 'dawn'
+        elif dateAndTime < times_setting[0].astimezone(state.timezone):
+            lightinfo = 'day'
+        elif dateAndTime < times_setting[1].astimezone(state.timezone):
+            lightinfo = 'dusk'
+        else:
+            lightinfo = 'night'
+
+        mqtt_publish('lightinfo', lightinfo)
+
 
 def writeSerialData():
     pit_svflags = ir['PitSvFlags']
@@ -126,7 +151,7 @@ def writeSerialData():
 def readSerialData(): 
     telegram = ser.readline()
     print('SERIAL< ' + str(telegram))
-    telegram = telegram.lstrip('#').rstrip('*\n')
+    telegram = str(telegram).lstrip('#').rstrip('*\n')
     keyvalue = telegram.split('=')
     
     if len(keyvalue) == 2:
@@ -198,6 +223,7 @@ def on_disconnect(client, userdata, rc):
 def banner():
     print("=============================")
     print("|         IR2MQTT           |")
+    print("|           " + str(version) + "             |")
     print("=============================")
     print("MQTT host: " + config['mqtt']['host'])
     print("MQTT port: " + config['mqtt']['port'])
@@ -229,6 +255,7 @@ if __name__ == '__main__':
         print('unable to connect to mqtt broker')
 
     ser = serial.Serial()
+    useSerial = False
     if config.has_option('global', 'serial'):
         ser.port =  config['global']['serial']
         ser.baudrate = 9600
