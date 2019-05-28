@@ -6,6 +6,11 @@ import paho.mqtt.client as mqtt
 import configparser
 import yaml
 import serial
+import astral
+import timezonefinder
+import pytz
+from datetime import datetime
+from datetime import date
 from irsdk import PitCommandMode
 
 debug = False
@@ -78,9 +83,31 @@ def publishSessionTime():
     if we:
         date = we['Date']
 
-    state.date_time = str(date) + 'T' + tod + str(config['mqtt']['timezone'])
-    print('session ToD:', state.date_time)
-    mqtt_publish('ToD', state.date_time)
+    state.date_time = str(date) + 'T' + tod
+    print('session ToD:', state.date_time  + str(config['mqtt']['timezone']))
+    mqtt_publish('ToD', state.date_time + str(config['mqtt']['timezone']))
+    publishLightInfo(state.date_time)
+
+def publishLightInfo(dateAndTime):
+    lat = str(ir['WeekendInfo']['TrackLatitude']).rstrip(' m')
+    lon = str(ir['WeekendInfo']['TrackLongitude']).rstrip(' m')
+    alt = str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m')
+    print(lat + ', ' + lon + ', ' + alt)
+
+    timezone_str = timeZoneFinder.closest_timezone_at(lng=float(lon), lat=float(lat))
+
+    if timezone_str is None:
+        print("Could not determine the time zone")
+    else:
+        # Display the current time in that time zone
+        print(timezone_str)
+        timezone = pytz.timezone(timezone_str)
+        times = geoTime.sun_utc(date.fromisoformat(dateAndTime), float(lat), float(lon), float(alt))
+        for light in times:
+            utcOffset = timezone.utcoffset(times[light])
+            dt = timezone.localize(times[light])
+            print(light + ': ' + str(dt)) 
+    
 
 def writeSerialData():
     pit_svflags = ir['PitSvFlags']
@@ -208,6 +235,10 @@ if __name__ == '__main__':
         useSerial = True
         print('using COM port: ' + str(ser.port))
 
+    geoTime = astral.Astral()
+    geoTime.solar_depression = 'civil'
+    timeZoneFinder = timezonefinder.TimezoneFinder()
+    
     try:
         # infinite loop
         while True:
