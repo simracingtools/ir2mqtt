@@ -70,7 +70,7 @@ def publishSessionTime():
     if we:
         date = we['Date']
 
-    state.date_time = str(date) + 'T' + tod + '+0200'
+    state.date_time = str(date) + 'T' + tod + str(config['mqtt']['timezone'])
     print('session ToD:', state.date_time)
     mqtt_publish('ToD', state.date_time)
 
@@ -118,7 +118,7 @@ def loop():
                 if val != None:
                     mqtt_publish(top, val)
     
-    if ser.is_open:
+    if useSerial and ser.is_open:
         writeSerialData()
 
     # and just as an example
@@ -203,10 +203,10 @@ if __name__ == '__main__':
             # if we are, then process data
             if state.ir_connected:
                 loop()
+
             # sleep for 1 second
             # maximum you can use is 1/60
             # cause iracing update data with 60 fps
-            
             time.sleep(1)
     except KeyboardInterrupt:
         # press ctrl+c to exit
