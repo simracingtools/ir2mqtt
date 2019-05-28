@@ -50,7 +50,8 @@ def check_iracing():
             print('starting up using dump file: ' + str(config['global']['simulate']))
         else:
             is_startup = ir.startup()
-            print('DEBUG: starting up with simulation')
+            if debug:
+                print('DEBUG: starting up with simulation')
 
         if is_startup and ir.is_initialized and ir.is_connected:
             state.ir_connected = True
