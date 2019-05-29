@@ -6,6 +6,9 @@ I implemented a small serial protocol which enables you to integrate with an
 Arduino-/Teensy-based buttonbox to reflect pit flags (tyre change, re-fuel etc.)
 and refueling amount.
 
+In addition the astronomical twilight times and sun elevation angles are 
+calculated by using the geographical track locations from the irsdk information.
+
 My first appliance is to control room lighting to correspond to the simulations 
 TimeOfDay so it switches off during the night and is dimmed during sunrise/sunset.
 
@@ -16,6 +19,9 @@ You need to install
 * [Python iRacing SDK](https://github.com/kutu/pyirsdk#install), 
 * [Python Paho MQTT library](https://pypi.org/project/paho-mqtt/#installation) and 
 * [PySerial library](https://pythonhosted.org/pyserial/pyserial.html#installation).
+* [Astral](https://astral.readthedocs.io/en/latest/index.html)
+* [TimezoneFinder](https://pypi.org/project/timezonefinder/)
+* [pytz](http://pytz.sourceforge.net/)
 
 Optionally if you wand to create a self contained executable you may install 
 [PyInstaller](https://www.pyinstaller.org/).
@@ -79,12 +85,21 @@ the same directory as the script/application is executed.
 ## State and TimeOfDay publishing
 
 Indepentently from the configuration to the application the IRSDK connection 
-state is published on the topic <baseTopic>/state as numerical value:
+state is published on the topic 
+
+	<baseTopic>/state 
+	
+as numerical value:
 
 * 0 means irsdk is disconnected from the simulation
 * 1 means irsdk is connected to the simulation
 
-The date and time of day information is published on the topic <baseTopic>/ToD
+The date and time of day information is translated from the original track 
+timezone to the timezone specified in the configuration and  published on the 
+topic 
+
+	<baseTopic>/ToD 
+
 in ISO format:
 
 	%Y-%m-%dT%H:%M:%S<+/-ffff>
@@ -93,7 +108,21 @@ For example Noon at 2nd of March 2019 in the CEST timezone is published as
 
 	2019-03-02T12:00:00+0200
 
- 
+## Light information publishing
+
+Independently from the configuration a lightinfo information is calculated which
+can be one of the following values: dusk, day, dawn, night. This value is
+published on the MQTT topic:
+
+	<baseTopic>/lightinfo
+
+The current elevation angle of the sun for the simulation time of day at the 
+track location is published as a float value on the topic:
+
+	<baseTopic>/solarElevation
+
+Negative value means the sun is below the horizon, positive value means it's
+above.
 
 ## Serial telegram protocol
 
