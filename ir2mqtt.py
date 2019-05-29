@@ -141,27 +141,31 @@ def writeSerialData():
 
     pit_svfuel = ir['PitSvFuel']
     if state.pitFuel != pit_svfuel:
-        ser.write(('#PFU=' + str(pit_svfuel) + '*').encode('ascii'))
+        ser.write(('#PFU=' + str(pit_svfuel)[0:3] + '*').encode('ascii'))
         state.pitFuel = pit_svfuel
-        print('SERIAL> ' + '#PFU=' + str(pit_svfuel) + '*')
+        print('SERIAL> ' + '#PFU=' + str(pit_svfuel)[0:3] + '*')
 
 def readSerialData(): 
-    telegram = ser.readline()
-    print('SERIAL< ' + str(telegram))
-    start = telegram.index('#')
-    end = telegram.index('*')
-    telegram = telegram[start + 1:end]
-    keyvalue = telegram.split('=')
-    
-    if len(keyvalue) == 2:
-        if keyvalue[0] == 'PFU':
-            if debug:
-                print('DEBUG: send fuel pit command ' + int(keyvalue[1]) + ' l')
-            ir.pit_command(PitCommandMode.fuel , int(keyvalue[1]))
-        if keyvalue[0] == 'PCM':
-            if debug:
-                print('DEBUG: send pit command ' + int(keyvalue[1]))
-            ir.pit_command(int(keyvalue[1]))
+    telegram = str(ser.readline())
+    try:
+        start = telegram.index('#')
+        end = telegram.index('*')
+        telegram = telegram[start + 1:end]
+        print('SERIAL< ' + telegram)
+        keyvalue = telegram.split('=')
+            
+        if len(keyvalue) == 2:
+            if keyvalue[0] == 'PFU':
+                if debug:
+                    print('DEBUG: send fuel pit command ' + int(keyvalue[1]) + ' l')
+                ir.pit_command(PitCommandMode.fuel , int(keyvalue[1]))
+            if keyvalue[0] == 'PCM':
+                if debug:
+                    print('DEBUG: send pit command ' + int(keyvalue[1]))
+                ir.pit_command(int(keyvalue[1]))
+    except Exception as e:
+        if debug:
+            print('DEBUG: error processing telegram ' + telegram + ' : ' + e)
 
 # our main loop, where we retrieve data
 # and do something useful with it
