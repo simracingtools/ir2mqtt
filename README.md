@@ -24,17 +24,20 @@ You need to install
 * [pytz](http://pytz.sourceforge.net/)
 
 Optionally if you wand to create a self contained executable you may install 
-[PyInstaller](https://www.pyinstaller.org/).
+[PyInstaller](https://www.pyinstaller.org/). Note that due to a bug you will 
+need to install the develpment version:
+
+	pip install https://github.com/pyinstaller/pyinstaller/tarball/develop
 
 ## Building
 
 No build steps are necessary to execute the python script:
 
-    python ir2mqtt.py
+    python  --add-binary <your python path>\Lib\site-packages\timezonefinder;timezonefinder ir2mqtt.py
     
 To create a self-contained executable:
 
-    pyinstaller -F ir2mqtt.py
+    pyinstaller -F --add-binary <your python path>\Lib\site-packages\timezonefinder;timezonefinder ir2mqtt.py
 
 ## Configuration
 
@@ -69,7 +72,7 @@ the same directory as the script/application is executed.
 	baseTopic = /sensors/iRacing
 	
 	# Timezone used to publish the simulations TimeOfDay
-	timezone=+0200
+	timezone=CET
 
 	[iracing]
 	# Mapping of irsdk values to MQTT topics.
