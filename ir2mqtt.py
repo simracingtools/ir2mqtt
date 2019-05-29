@@ -148,7 +148,9 @@ def writeSerialData():
 def readSerialData(): 
     telegram = ser.readline()
     print('SERIAL< ' + str(telegram))
-    telegram = str(telegram).lstrip('#').rstrip('*\n')
+    start = telegram.index('#')
+    end = telegram.index('*')
+    telegram = telegram[start + 1:end]
     keyvalue = telegram.split('=')
     
     if len(keyvalue) == 2:
