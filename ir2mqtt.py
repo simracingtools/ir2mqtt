@@ -81,25 +81,21 @@ def check_iracing():
             state.latitude = float(str(ir['WeekendInfo']['TrackLatitude']).rstrip(' m'))
             state.longitude = float(str(ir['WeekendInfo']['TrackLongitude']).rstrip(' m'))
             state.elevation = float(str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m'))
-            state.timezone = pytz.timezone(timeZoneFinder.timezone_at(lng=state.longitude, lat=state.latitude))
+            state.timezone = pytz.timezone(timeZoneFinder.certain_timezone_at(lng=state.longitude, lat=state.latitude))
             
             if ser.is_open:
                 writeSerialData()
 
 def publishSessionTime():
-    sToD = ir['SessionTimeOfDay']
-
-    tod = time.strftime("%H:%M:%S", time.localtime(float(sToD)-3600))
-    dat = time.strftime("%Y-%m-%d")
-
-    we = ir['WeekendInfo']['WeekendOptions']
-        
-    if we:
-        dat = we['Date']
-
-    state.date_time = datetime.strptime(dat + 'T' + tod, "%Y-%m-%dT%H:%M:%S")
-    state.date_time = datetime.combine(date.fromisoformat(dat), dttime.fromisoformat(tod), state.timezone)
     
+    sToD = ir['SessionTimeOfDay']
+    tod = time.localtime(float(sToD)-3600)
+    dat = ir['WeekendInfo']['WeekendOptions']['Date'].split('-')
+
+    state.date_time = state.timezone.localize(datetime(int(dat[0]), int(dat[1]), int(dat[2]), tod.tm_hour, tod.tm_min, tod.tm_sec))
+    # Display the current time in that time zone
+    print('session ToD:', state.date_time.isoformat('T'))
+
     mqtt_publish('ToD', datetime.strftime(state.date_time.astimezone(pytz.timezone(config['mqtt']['timezone'])), "%Y-%m-%dT%H:%M:%S%z"))
     publishLightInfo(state.date_time)
 
@@ -108,17 +104,17 @@ def publishLightInfo(dateAndTime):
     if state.timezone is None:
         print("Could not determine the time zone")
     else:
-        # Display the current time in that time zone
-        print('session ToD:', state.date_time.isoformat('T'))
-        times_setting = geoTime.twilight_utc(astral.SUN_SETTING, dateAndTime, state.latitude, state.longitude, state.elevation)
-        times_rising = geoTime.twilight_utc(astral.SUN_RISING, dateAndTime, state.latitude, state.longitude, state.elevation)
         angle = geoTime.solar_elevation(dateAndTime, state.latitude, state.longitude)
         print('solar elevation: ' + str(angle))
+        mqtt_publish('solarElevation', str(angle))
+        
+        times_setting = geoTime.twilight_utc(astral.SUN_SETTING, dateAndTime, state.latitude, state.longitude, state.elevation)
+        times_rising = geoTime.twilight_utc(astral.SUN_RISING, dateAndTime, state.latitude, state.longitude, state.elevation)
         if debug:
-            print("rising start  " + str(times_rising[0].astimezone(state.timezone)))
-            print("rising end    " + str(times_rising[1].astimezone(state.timezone)))
-            print("setting start " + str(times_setting[0].astimezone(state.timezone)))
-            print("setting end   " + str(times_setting[1].astimezone(state.timezone)))
+            print("DEBUG: rising start  " + str(times_rising[0].astimezone(state.timezone)))
+            print("DEBUG: rising end    " + str(times_rising[1].astimezone(state.timezone)))
+            print("DEBUG: setting start " + str(times_setting[0].astimezone(state.timezone)))
+            print("DEBUG: setting end   " + str(times_setting[1].astimezone(state.timezone)))
 
         lightinfo = 'day'
         if dateAndTime < times_rising[0].astimezone(state.timezone):
@@ -132,6 +128,7 @@ def publishLightInfo(dateAndTime):
         else:
             lightinfo = 'night'
 
+        print('lightinfo: ' + lightinfo)
         mqtt_publish('lightinfo', lightinfo)
 
 
@@ -239,6 +236,8 @@ if __name__ == '__main__':
     banner()
     if config.has_option('global', 'debug'):
         debug = config.getboolean('global', 'debug')
+
+    if debug:
         print('Debug output enabled')
 
     ir = irsdk.IRSDK()
