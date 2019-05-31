@@ -201,7 +201,9 @@ amount see PFU telegram.
  
 ### Reading/writing telegrams on Arduino/Teensy
 
-For your convenience here a function you can use in a sketch to read the 
+I provide an Arduino library [IRserial](../IRserial/README.md) which should help to 
+implement a Sketch communicating with the iRacing simulation.
+Als alternative - here a function you can use in a sketch to read the 
 telegrams from the serial port on an Arduino/Teensy microcontroller:
 
 	String readTelegramFromSerial() {
