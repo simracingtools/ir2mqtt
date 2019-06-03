@@ -57,6 +57,7 @@ class State:
     latitude = -1
     longitude = -1
     elevation = -1
+    mqttdict = {}
 
 # Possible states given in Paho MQTT client callbacks 
 mqttRC = ['Connection successful', 
@@ -81,6 +82,7 @@ def check_iracing():
         state.longitude = -1
         state.elevation = -1
         state.timezone = -1
+        state.mqttdict = {}
 
         # Close serial port to buttonbox
         if ser.is_open:
@@ -234,20 +236,28 @@ def loop():
     if state.tick % 60 == 1:
         publishSessionTime()
     
-        # read and publish configured telemetry values
-        if config.has_section('iracing'):
-            for top in config['iracing']:
-                ind = config.get('iracing', top).split('/')
-                val = ir
-                for key in ind:
-                    if val != None:
-                        if isinstance(val, list):
-                            val = val[0].__getitem__(key)
-                        else:
-                            val = val.__getitem__(key)
-    
+    # read and publish configured telemetry values every second - but only
+    # if the value has changed in telemetry
+    if config.has_section('iracing'):
+        for top in config['iracing']:
+            ind = config.get('iracing', top).split('/')
+            val = ir
+            for key in ind:
                 if val != None:
-                    mqtt_publish(top, val)
+                    if isinstance(val, list):
+                        val = val[0].__getitem__(key)
+                    else:
+                        val = val.__getitem__(key)
+
+            if val != None:
+                try:
+                    lastVal = state.mqttdict[key]
+                    if lastVal == val:
+                        continue
+                except KeyError:
+                    state.mqttdict[key] = val
+                
+                mqtt_publish(top, val)
 
     # Read/Write serial data as needed
     if useSerial and ser.is_open:
