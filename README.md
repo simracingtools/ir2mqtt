@@ -33,7 +33,7 @@ need to install the develpment version:
 
 No build steps are necessary to execute the python script:
 
-    python  --add-binary <your python path>\Lib\site-packages\timezonefinder;timezonefinder ir2mqtt.py
+    python ir2mqtt.py
     
 To create a self-contained executable:
 
