@@ -1,0 +1,1814 @@
+---
+WeekendInfo:
+ TrackName: limerock full
+ TrackID: 1
+ TrackLength: 2.36 km
+ TrackDisplayName: Lime Rock Park
+ TrackDisplayShortName: Lime Rock
+ TrackConfigName: Full Course
+ TrackCity: Lakeville
+ TrackCountry: USA
+ TrackAltitude: 164.01 m
+ TrackLatitude: 41.928641 m
+ TrackLongitude: -73.381050 m
+ TrackNorthOffset: 0.4058 rad
+ TrackNumTurns: 7
+ TrackPitSpeedLimit: 72.00 kph
+ TrackType: road course
+ TrackDirection: neutral
+ TrackWeatherType: Generated / Dynamic Sky
+ TrackSkies: Partly Cloudy
+ TrackSurfaceTemp: 41.55 C
+ TrackAirTemp: 27.30 C
+ TrackAirPressure: 29.34 Hg
+ TrackWindVel: 2.36 m/s
+ TrackWindDir: 2.24 rad
+ TrackRelativeHumidity: 56 %
+ TrackFogLevel: 0 %
+ TrackCleanup: 1
+ TrackDynamicTrack: 1
+ SeriesID: 135
+ SeasonID: 2513
+ SessionID: 112564682
+ SubSessionID: 27335552
+ LeagueID: 0
+ Official: 1
+ RaceWeek: 0
+ EventType: Race
+ Category: Road
+ SimMode: full
+ TeamRacing: 0
+ MinDrivers: 0
+ MaxDrivers: 1
+ DCRuleSet: None
+ QualifierMustStartRace: 0
+ NumCarClasses: 1
+ NumCarTypes: 2
+ HeatRacing: 0
+ WeekendOptions:
+  NumStarters: 20
+  StartingGrid: 2x2 inline pole on left
+  QualifyScoring: best lap
+  CourseCautions: off
+  StandingStart: 1
+  Restarts: double file lapped cars behind
+  WeatherType: Generated / Dynamic Sky
+  Skies: Partly Cloudy
+  WindDirection: N
+  WindSpeed: 3.22 km/h
+  WeatherTemp: 25.56 C
+  RelativeHumidity: 55 %
+  FogLevel: 0 %
+  TimeOfDay: 1:25 pm
+  Date: 2019-04-01
+  EarthRotationSpeedupFactor: 1
+  Unofficial: 0
+  CommercialMode: consumer
+  NightMode: variable
+  IsFixedSetup: 0
+  StrictLapsChecking: default
+  HasOpenRegistration: 0
+  HardcoreLevel: 1
+  NumJokerLaps: 0
+  IncidentLimit: 17
+ TelemetryOptions:
+  TelemetryDiskFile: ""
+
+SessionInfo:
+ Sessions:
+ - SessionNum: 0
+   SessionLaps: unlimited
+   SessionTime: 180.0000 sec
+   SessionNumLapsToAvg: 0
+   SessionType: Practice
+   SessionTrackRubberState: high usage
+   SessionName: PRACTICE
+   SessionSubType: 
+   SessionSkipped: 0
+   SessionRunGroupsUsed: 0
+   ResultsPositions:
+   - Position: 1
+     ClassPosition: 0
+     CarIdx: 18
+     Lap: 1
+     Time: 64.9606
+     FastestLap: 1
+     FastestTime: 64.9606
+     LastTime: 64.9606
+     LapsLed: 0
+     LapsComplete: 1
+     JokerLapsComplete: 0
+     LapsDriven: 1.314
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 2
+     ClassPosition: 1
+     CarIdx: 13
+     Lap: 1
+     Time: 66.3128
+     FastestLap: 1
+     FastestTime: 66.3128
+     LastTime: 66.3128
+     LapsLed: 0
+     LapsComplete: 1
+     JokerLapsComplete: 0
+     LapsDriven: 1.129
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 3
+     ClassPosition: 2
+     CarIdx: 16
+     Lap: 1
+     Time: 66.5919
+     FastestLap: 1
+     FastestTime: 66.5919
+     LastTime: 66.5919
+     LapsLed: 0
+     LapsComplete: 1
+     JokerLapsComplete: 0
+     LapsDriven: 1.385
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 4
+     ClassPosition: 3
+     CarIdx: 4
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 1.915
+     Incidents: 1
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 5
+     ClassPosition: 4
+     CarIdx: 7
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.000
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 6
+     ClassPosition: 5
+     CarIdx: 15
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.000
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 7
+     ClassPosition: 6
+     CarIdx: 17
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 1
+     JokerLapsComplete: 0
+     LapsDriven: 1.174
+     Incidents: 4
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 8
+     ClassPosition: 7
+     CarIdx: 1
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 1.271
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 9
+     ClassPosition: 8
+     CarIdx: 2
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 1.014
+     Incidents: 4
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 10
+     ClassPosition: 9
+     CarIdx: 3
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.000
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 11
+     ClassPosition: 10
+     CarIdx: 5
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.894
+     Incidents: 2
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 12
+     ClassPosition: 11
+     CarIdx: 6
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.000
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 13
+     ClassPosition: 12
+     CarIdx: 8
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.000
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 14
+     ClassPosition: 13
+     CarIdx: 9
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 1.046
+     Incidents: 1
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 15
+     ClassPosition: 14
+     CarIdx: 10
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 1.131
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 16
+     ClassPosition: 15
+     CarIdx: 11
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 1.949
+     Incidents: 1
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 17
+     ClassPosition: 16
+     CarIdx: 12
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.826
+     Incidents: 2
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 18
+     ClassPosition: 17
+     CarIdx: 14
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.494
+     Incidents: 2
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 19
+     ClassPosition: 18
+     CarIdx: 19
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.000
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   - Position: 20
+     ClassPosition: 19
+     CarIdx: 20
+     Lap: 0
+     Time: -1.0000
+     FastestLap: -1
+     FastestTime: -1.0000
+     LastTime: -1.0000
+     LapsLed: 0
+     LapsComplete: 0
+     JokerLapsComplete: 0
+     LapsDriven: 0.000
+     Incidents: 0
+     ReasonOutId: 0
+     ReasonOutStr: Running
+   ResultsFastestLap:
+   - CarIdx: 18
+     FastestLap: 1
+     FastestTime: 64.9606
+   ResultsAverageLapTime: -1.0000
+   ResultsNumCautionFlags: 0
+   ResultsNumCautionLaps: 0
+   ResultsNumLeadChanges: 0
+   ResultsLapsComplete: -1
+   ResultsOfficial: 1
+ - SessionNum: 1
+   SessionLaps: 2
+   SessionTime: 480.0000 sec
+   SessionNumLapsToAvg: 0
+   SessionType: Lone Qualify
+   SessionTrackRubberState: carry over
+   SessionName: QUALIFY
+   SessionSubType: 
+   SessionSkipped: 0
+   SessionRunGroupsUsed: 0
+   ResultsPositions:
+   ResultsFastestLap:
+   - CarIdx: 255
+     FastestLap: 0
+     FastestTime: -1.0000
+   ResultsAverageLapTime: -1.0000
+   ResultsNumCautionFlags: 0
+   ResultsNumCautionLaps: 0
+   ResultsNumLeadChanges: 0
+   ResultsLapsComplete: -1
+   ResultsOfficial: 0
+ - SessionNum: 2
+   SessionLaps: unlimited
+   SessionTime: 600.0000 sec
+   SessionNumLapsToAvg: 0
+   SessionType: Race
+   SessionTrackRubberState: carry over
+   SessionName: RACE
+   SessionSubType: 
+   SessionSkipped: 0
+   SessionRunGroupsUsed: 0
+   ResultsPositions:
+   ResultsFastestLap:
+   - CarIdx: 255
+     FastestLap: 0
+     FastestTime: -1.0000
+   ResultsAverageLapTime: -1.0000
+   ResultsNumCautionFlags: 0
+   ResultsNumCautionLaps: 0
+   ResultsNumLeadChanges: 0
+   ResultsLapsComplete: -1
+   ResultsOfficial: 0
+
+CameraInfo:
+ Groups:
+ - GroupNum: 1
+   GroupName: Nose
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamNose
+ - GroupNum: 2
+   GroupName: Gearbox
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamGearbox
+ - GroupNum: 3
+   GroupName: Roll Bar
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRoll Bar
+ - GroupNum: 4
+   GroupName: LF Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamLF Susp
+ - GroupNum: 5
+   GroupName: LR Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamLR Susp
+ - GroupNum: 6
+   GroupName: Gyro
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamGyro
+ - GroupNum: 7
+   GroupName: RF Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRF Susp
+ - GroupNum: 8
+   GroupName: RR Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRR Susp
+ - GroupNum: 9
+   GroupName: Cockpit
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamCockpit
+ - GroupNum: 10
+   GroupName: Scenic
+   IsScenic: true
+   Cameras:
+   - CameraNum: 1
+     CameraName: Scenic_00
+   - CameraNum: 2
+     CameraName: Scenic_01
+   - CameraNum: 3
+     CameraName: Scenic_03
+   - CameraNum: 4
+     CameraName: Scenic_04
+   - CameraNum: 5
+     CameraName: Scenic_05
+   - CameraNum: 6
+     CameraName: Scenic_06
+   - CameraNum: 7
+     CameraName: Scenic_07
+ - GroupNum: 11
+   GroupName: TV1
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamTV1_00
+   - CameraNum: 2
+     CameraName: CamTV1_01
+   - CameraNum: 3
+     CameraName: CamTV1_02
+   - CameraNum: 4
+     CameraName: CamTV1_03
+   - CameraNum: 5
+     CameraName: CamTV1_04
+   - CameraNum: 6
+     CameraName: CamTV1_05
+   - CameraNum: 7
+     CameraName: CamTV1_06
+   - CameraNum: 8
+     CameraName: CamTV1_07
+ - GroupNum: 12
+   GroupName: TV2
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamTV2_00
+   - CameraNum: 2
+     CameraName: CamTV2_01
+   - CameraNum: 3
+     CameraName: CamTV2_02
+   - CameraNum: 4
+     CameraName: CamTV2_03
+   - CameraNum: 5
+     CameraName: CamTV2_04
+   - CameraNum: 6
+     CameraName: CamTV2_05
+   - CameraNum: 7
+     CameraName: CamTV2_06
+   - CameraNum: 8
+     CameraName: CamTV2_07
+   - CameraNum: 9
+     CameraName: CamTV2_08
+   - CameraNum: 10
+     CameraName: CamTV2_09
+   - CameraNum: 11
+     CameraName: CamTV2_10
+ - GroupNum: 13
+   GroupName: TV3
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamTV3_00
+   - CameraNum: 2
+     CameraName: CamTV3_01
+   - CameraNum: 3
+     CameraName: CamTV3_02
+   - CameraNum: 4
+     CameraName: CamTV3_03
+   - CameraNum: 5
+     CameraName: CamTV3_04
+   - CameraNum: 6
+     CameraName: CamTV3_05
+   - CameraNum: 7
+     CameraName: CamTV3_06
+   - CameraNum: 8
+     CameraName: CamTV3_07
+   - CameraNum: 9
+     CameraName: CamTV3_08
+   - CameraNum: 10
+     CameraName: CamTV3_09
+ - GroupNum: 14
+   GroupName: Pit Lane
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamPit Lane
+ - GroupNum: 15
+   GroupName: Pit Lane 2
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamPit Lane 2
+ - GroupNum: 16
+   GroupName: Chopper
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamChopper
+ - GroupNum: 17
+   GroupName: Blimp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamBlimp
+ - GroupNum: 18
+   GroupName: Chase
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamChase
+ - GroupNum: 19
+   GroupName: Far Chase
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamFar Chase
+ - GroupNum: 20
+   GroupName: Rear Chase
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRear Chase
+
+RadioInfo:
+ SelectedRadioNum: 0
+ Radios:
+ - RadioNum: 0
+   HopCount: 4
+   NumFrequencies: 6
+   TunedToFrequencyNum: 0
+   ScanningIsOn: 1
+   Frequencies:
+   - FrequencyNum: 0
+     FrequencyName: "@ALLTEAMS"
+     Priority: 12
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 1
+     IsDeletable: 0
+   - FrequencyNum: 1
+     FrequencyName: "@DRIVERS"
+     Priority: 15
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 0
+     Muted: 0
+     IsMutable: 1
+     IsDeletable: 0
+   - FrequencyNum: 2
+     FrequencyName: "@TEAM"
+     Priority: 60
+     CarIdx: 8
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 0
+     IsDeletable: 0
+   - FrequencyNum: 3
+     FrequencyName: "@CLUB"
+     Priority: 20
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 42
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 1
+     IsDeletable: 0
+   - FrequencyNum: 4
+     FrequencyName: "@RACECONTROL"
+     Priority: 80
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 0
+     Muted: 0
+     IsMutable: 0
+     IsDeletable: 0
+   - FrequencyNum: 5
+     FrequencyName: "@PRIVATE"
+     Priority: 70
+     CarIdx: -1
+     EntryIdx: 8
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 0
+     IsDeletable: 0
+
+DriverInfo:
+ DriverCarIdx: 8
+ DriverUserID: 229120
+ PaceCarIdx: 0
+ DriverHeadPosX: -0.416
+ DriverHeadPosY: 0.344
+ DriverHeadPosZ: 0.660
+ DriverCarIdleRPM: 875.000
+ DriverCarRedLine: 6850.000
+ DriverCarEngCylinderCount: 4
+ DriverCarFuelKgPerLtr: 0.750
+ DriverCarFuelMaxLtr: 44.987
+ DriverCarMaxFuelPct: 1.000
+ DriverCarSLFirstRPM: 6000.000
+ DriverCarSLShiftRPM: 6850.000
+ DriverCarSLLastRPM: 6850.000
+ DriverCarSLBlinkRPM: 7000.000
+ DriverPitTrkPct: 0.011068
+ DriverCarEstLapTime: 57.4144
+ DriverSetupName: limerock-w13-s2-18.sto
+ DriverSetupIsModified: 0
+ DriverSetupLoadTypeName: user
+ DriverSetupPassedTech: 1
+ DriverIncidentCount: 0
+ Drivers:
+ - CarIdx: 0
+   UserName: Pace Car
+   AbbrevName: 
+   Initials: 
+   UserID: -1
+   TeamID: 0
+   TeamName: Pace Car
+   CarNumber: "0"
+   CarNumberRaw: 0
+   CarPath: safety pcporsche911cup
+   CarClassID: 11
+   CarID: 108
+   CarIsPaceCar: 1
+   CarIsAI: 0
+   CarScreenName: Porsche 911 GT3 Cup (991)
+   CarScreenNameShort: Porsche 911 GT3 Cup
+   CarClassShortName: 
+   CarClassRelSpeed: 0
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 0
+   LicLevel: 1
+   LicSubLevel: 0
+   LicString: R 0.00
+   LicColor: 0xffffff
+   IsSpectator: 0
+   CarDesignStr: 0,ffffff,ffffff,ffffff
+   HelmetDesignStr: 0,ffffff,ffffff,ffffff
+   SuitDesignStr: 0,ffffff,ffffff,ffffff
+   CarNumberDesignStr: 0,0,ffffff,ffffff,ffffff
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: -none-
+   DivisionName: Division 1
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 1
+   UserName: Darren Way
+   AbbrevName: Way, D
+   Initials: DW
+   UserID: 350900
+   TeamID: 0
+   TeamName: Darren Way
+   CarNumber: "1"
+   CarNumberRaw: 1
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1299
+   LicLevel: 13
+   LicSubLevel: 159
+   LicString: B 1.59
+   LicColor: 0x00c702
+   IsSpectator: 0
+   CarDesignStr: 20,ffffff,ed2129,2a3795,ffffff
+   HelmetDesignStr: 67,ffffff,fc0706,2600ff
+   SuitDesignStr: 27,ffffff,ed2129,2a3795
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: UK and I
+   DivisionName: Division 6
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 2
+   UserName: Bob Remels
+   AbbrevName: Remels, B
+   Initials: BR
+   UserID: 139152
+   TeamID: 0
+   TeamName: Bob Remels
+   CarNumber: "2"
+   CarNumberRaw: 2
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1295
+   LicLevel: 10
+   LicSubLevel: 283
+   LicString: C 2.83
+   LicColor: 0xfeec04
+   IsSpectator: 0
+   CarDesignStr: 3,d1000c,3042cf,44ff38
+   HelmetDesignStr: 27,d1000c,3042cf,44ff38
+   SuitDesignStr: 3,d1000c,3042cf,44ff38
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 97
+   CarSponsor_2: 106
+   ClubName: Texas
+   DivisionName: Division 5
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 3
+   UserName: Neil Archbold
+   AbbrevName: Archbold, N
+   Initials: NA
+   UserID: 49689
+   TeamID: 0
+   TeamName: Neil Archbold
+   CarNumber: "3"
+   CarNumberRaw: 3
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1289
+   LicLevel: 11
+   LicSubLevel: 323
+   LicString: C 3.23
+   LicColor: 0xfeec04
+   IsSpectator: 0
+   CarDesignStr: 5,004701,004701,026628
+   HelmetDesignStr: 35,191a1a,7d1787,ebf6fa
+   SuitDesignStr: 3,1d1f2a,8c3594,fef8ec
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 97
+   CarSponsor_2: 97
+   ClubName: UK and I
+   DivisionName: Division 7
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 4
+   UserName: Yigit Urkmezturk
+   AbbrevName: Urkmezturk, Y
+   Initials: YU
+   UserID: 374525
+   TeamID: 0
+   TeamName: Yigit Urkmezturk
+   CarNumber: "4"
+   CarNumberRaw: 4
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1439
+   LicLevel: 2
+   LicSubLevel: 287
+   LicString: R 2.87
+   LicColor: 0xfc0706
+   IsSpectator: 0
+   CarDesignStr: 19,ffffff,ed2129,1889c9,ffffff
+   HelmetDesignStr: 1,ed2129,2a3795,ffffff
+   SuitDesignStr: 1,ed2129,2a3795,ffffff
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: International
+   DivisionName: Rookie
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 5
+   UserName: Dani Caceres
+   AbbrevName: Caceres, D
+   Initials: DC
+   UserID: 378525
+   TeamID: 0
+   TeamName: Dani Caceres
+   CarNumber: "5"
+   CarNumberRaw: 5
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1283
+   LicLevel: 6
+   LicSubLevel: 255
+   LicString: D 2.55
+   LicColor: 0xfc8a27
+   IsSpectator: 0
+   CarDesignStr: 11,000000,080202,e6e637,000000
+   HelmetDesignStr: 68,f1f1ee,e7d913,000000
+   SuitDesignStr: 24,f7ea5e,030202,010204
+   CarNumberDesignStr: 0,0,ffffff,ed2129,2a3795
+   CarSponsor_1: 132
+   CarSponsor_2: 132
+   ClubName: Iberia
+   DivisionName: Division 5
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 6
+   UserName: Austin Knight
+   AbbrevName: Knight, A
+   Initials: AK
+   UserID: 376596
+   TeamID: 0
+   TeamName: Austin Knight
+   CarNumber: "6"
+   CarNumberRaw: 6
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1281
+   LicLevel: 7
+   LicSubLevel: 379
+   LicString: D 3.79
+   LicColor: 0xfc8a27
+   IsSpectator: 0
+   CarDesignStr: 10,db8306,000000,ffffff
+   HelmetDesignStr: 35,db6900,ffffff,ffffff
+   SuitDesignStr: 18,c76500,000000,ffffff
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 1
+   CarSponsor_2: 159
+   ClubName: Texas
+   DivisionName: Division 5
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 7
+   UserName: Manuel Guerra Guedes
+   AbbrevName: Guedes, M
+   Initials: MG
+   UserID: 379319
+   TeamID: 0
+   TeamName: Manuel Guerra Guedes
+   CarNumber: "7"
+   CarNumberRaw: 7
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1429
+   LicLevel: 2
+   LicSubLevel: 233
+   LicString: R 2.33
+   LicColor: 0xfc0706
+   IsSpectator: 0
+   CarDesignStr: 1,5e5e5e,111111,135324
+   HelmetDesignStr: 1,5e5e5e,111111,135324
+   SuitDesignStr: 1,5e5e5e,111111,135324
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: Iberia
+   DivisionName: Rookie
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 8
+   UserName: Robert Bausdorf
+   AbbrevName: Bausdorf, R
+   Initials: RB
+   UserID: 229120
+   TeamID: 0
+   TeamName: Robert Bausdorf
+   CarNumber: "8"
+   CarNumberRaw: 8
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1276
+   LicLevel: 20
+   LicSubLevel: 450
+   LicString: A 4.50
+   LicColor: 0x0153db
+   IsSpectator: 0
+   CarDesignStr: 21,000000,fd960d,fdfcfc;ff980a
+   HelmetDesignStr: 15,000000,ff0505,fee301
+   SuitDesignStr: 23,2a3795,fdfcfc,080707
+   CarNumberDesignStr: 0,0,f5f5f5,777777,000000
+   CarSponsor_1: 97
+   CarSponsor_2: 74
+   ClubName: DE-AT-CH
+   DivisionName: Division 6
+   CurDriverIncidentCount: 0
+   TeamIncidentCount: 0
+ - CarIdx: 9
+   UserName: Antonio Grapiglia
+   AbbrevName: Grapiglia, A
+   Initials: AG
+   UserID: 377962
+   TeamID: 0
+   TeamName: Antonio Grapiglia
+   CarNumber: "9"
+   CarNumberRaw: 9
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1255
+   LicLevel: 6
+   LicSubLevel: 269
+   LicString: D 2.69
+   LicColor: 0xfc8a27
+   IsSpectator: 0
+   CarDesignStr: 15,ff3d3d,ffffff,000000
+   HelmetDesignStr: 67,551511,b80505,b80505
+   SuitDesignStr: 18,b80505,551511,b80505
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 49
+   CarSponsor_2: 145
+   ClubName: Brazil
+   DivisionName: Division 6
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 10
+   UserName: David Bragg
+   AbbrevName: Bragg, D
+   Initials: DB
+   UserID: 41012
+   TeamID: 0
+   TeamName: David Bragg
+   CarNumber: "10"
+   CarNumberRaw: 10
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1231
+   LicLevel: 11
+   LicSubLevel: 302
+   LicString: C 3.02
+   LicColor: 0xfeec04
+   IsSpectator: 0
+   CarDesignStr: 6,370066,ffbd24,160033
+   HelmetDesignStr: 14,00026b,ffffff,f81224
+   SuitDesignStr: 28,ff0f0f,ffffff,000165
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 2
+   CarSponsor_2: 2
+   ClubName: Northwest
+   DivisionName: Division 5
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 11
+   UserName: Patrick Reich2
+   AbbrevName: Reich2, P
+   Initials: PR
+   UserID: 373964
+   TeamID: 0
+   TeamName: Patrick Reich2
+   CarNumber: "11"
+   CarNumberRaw: 11
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1231
+   LicLevel: 5
+   LicSubLevel: 167
+   LicString: D 1.67
+   LicColor: 0xfc8a27
+   IsSpectator: 0
+   CarDesignStr: 1,f26522,00aeef,0a0a0a
+   HelmetDesignStr: 35,f26522,d4f000,0a0a0a
+   SuitDesignStr: 23,f25621,d4f000,0a0a0a
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: DE-AT-CH
+   DivisionName: Division 6
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 12
+   UserName: David VELASQUEZ
+   AbbrevName: VELASQUEZ, D
+   Initials: DV
+   UserID: 144828
+   TeamID: 0
+   TeamName: David VELASQUEZ
+   CarNumber: "12"
+   CarNumberRaw: 12
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1222
+   LicLevel: 14
+   LicSubLevel: 256
+   LicString: B 2.56
+   LicColor: 0x00c702
+   IsSpectator: 0
+   CarDesignStr: 3,3783e1,080e49,666666
+   HelmetDesignStr: 21,ed2129,080e49,666666
+   SuitDesignStr: 1,000000,100af9,000000
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 50
+   CarSponsor_2: 124
+   ClubName: West
+   DivisionName: Division 7
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 13
+   UserName: Andreas Nemeth
+   AbbrevName: Nemeth, A
+   Initials: AN
+   UserID: 378722
+   TeamID: 0
+   TeamName: Andreas Nemeth
+   CarNumber: "13"
+   CarNumberRaw: 13
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1216
+   LicLevel: 11
+   LicSubLevel: 339
+   LicString: C 3.39
+   LicColor: 0xfeec04
+   IsSpectator: 0
+   CarDesignStr: 21,a1e02e,816a37,201e18,816a37
+   HelmetDesignStr: 56,030202,816a37,eda22c
+   SuitDesignStr: 2,030202,816a37,eda22c
+   CarNumberDesignStr: 0,0,0c0909,816a37,eda22c
+   CarSponsor_1: 107
+   CarSponsor_2: 105
+   ClubName: DE-AT-CH
+   DivisionName: Division 5
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 14
+   UserName: David Tate
+   AbbrevName: Tate, D
+   Initials: DT
+   UserID: 356204
+   TeamID: 0
+   TeamName: David Tate
+   CarNumber: "14"
+   CarNumberRaw: 14
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1207
+   LicLevel: 7
+   LicSubLevel: 318
+   LicString: D 3.18
+   LicColor: 0xfc8a27
+   IsSpectator: 0
+   CarDesignStr: 1,000000,ffb72e,fa6600
+   HelmetDesignStr: 59,000000,000000,fa6900
+   SuitDesignStr: 26,000000,000000,db6200
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: UK and I
+   DivisionName: Division 5
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 15
+   UserName: Caio Bertazini2
+   AbbrevName: Bertazini2, C
+   Initials: CB
+   UserID: 375440
+   TeamID: 0
+   TeamName: Caio Bertazini2
+   CarNumber: "15"
+   CarNumberRaw: 15
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1357
+   LicLevel: 2
+   LicSubLevel: 242
+   LicString: R 2.42
+   LicColor: 0xfc0706
+   IsSpectator: 0
+   CarDesignStr: 0,111310,aeafb2,ffffff
+   HelmetDesignStr: 24,e4e7e4,212450,969292
+   SuitDesignStr: 2,271d5d,ffffff,9d9595
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: Brazil
+   DivisionName: Rookie
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 16
+   UserName: Graeme Cessford
+   AbbrevName: Cessford, G
+   Initials: GC
+   UserID: 301224
+   TeamID: 0
+   TeamName: Graeme Cessford
+   CarNumber: "16"
+   CarNumberRaw: 16
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1204
+   LicLevel: 15
+   LicSubLevel: 377
+   LicString: B 3.77
+   LicColor: 0x00c702
+   IsSpectator: 0
+   CarDesignStr: 22,000000,c6ff00,c6ff00,c6ff00
+   HelmetDesignStr: 64,000000,a6b52c,ffffff
+   SuitDesignStr: 3,ffffff,c3da67,000000
+   CarNumberDesignStr: 0,0,ffffff,777777,bde557
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: UK and I
+   DivisionName: Division 6
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 17
+   UserName: Felipe Roncada
+   AbbrevName: Roncada, F
+   Initials: FR
+   UserID: 380805
+   TeamID: 0
+   TeamName: Felipe Roncada
+   CarNumber: "17"
+   CarNumberRaw: 17
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1350
+   LicLevel: 2
+   LicSubLevel: 250
+   LicString: R 2.50
+   LicColor: 0xfc0706
+   IsSpectator: 0
+   CarDesignStr: 1,111111,5e5e5e,135324
+   HelmetDesignStr: 1,111111,5e5e5e,135324
+   SuitDesignStr: 1,111111,5e5e5e,135324
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: Brazil
+   DivisionName: Rookie
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 18
+   UserName: Vitaliy Grigoryev
+   AbbrevName: Grigoryev, V
+   Initials: VG
+   UserID: 380976
+   TeamID: 0
+   TeamName: Vitaliy Grigoryev
+   CarNumber: "18"
+   CarNumberRaw: 18
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1350
+   LicLevel: 2
+   LicSubLevel: 250
+   LicString: R 2.50
+   LicColor: 0xfc0706
+   IsSpectator: 0
+   CarDesignStr: 1,0ada00,ffffff,111111
+   HelmetDesignStr: 1,0ada00,ffffff,111111
+   SuitDesignStr: 1,0ada00,ffffff,111111
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 0
+   CarSponsor_2: 0
+   ClubName: Central-Eastern Europe
+   DivisionName: Rookie
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 19
+   UserName: Christian Gaede
+   AbbrevName: 
+   Initials: 
+   UserID: 125448
+   TeamID: 0
+   TeamName: Christian Gaede
+   CarNumber: "19"
+   CarNumberRaw: 19
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1199
+   LicLevel: 10
+   LicSubLevel: 296
+   LicString: C 2.96
+   LicColor: 0xfeec04
+   IsSpectator: 0
+   CarDesignStr: 0,030303,e01c10,e01c10
+   HelmetDesignStr: 3,000000,ed2129,ed2129
+   SuitDesignStr: 1,000000,ed2129,000000
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 146
+   CarSponsor_2: 120
+   ClubName: DE-AT-CH
+   DivisionName: Division 6
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+ - CarIdx: 20
+   UserName: Douglas Rice
+   AbbrevName: Rice, D
+   Initials: DR
+   UserID: 116748
+   TeamID: 0
+   TeamName: Douglas Rice
+   CarNumber: "20"
+   CarNumberRaw: 20
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: MX5 Cup 2016
+   CarClassRelSpeed: 33
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 1.000 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1198
+   LicLevel: 19
+   LicSubLevel: 372
+   LicString: A 3.72
+   LicColor: 0x0153db
+   IsSpectator: 0
+   CarDesignStr: 23,000000,1dfa0a,f47a0a
+   HelmetDesignStr: 19,000000,c0620c,1dfa0a
+   SuitDesignStr: 18,000000,1dfa0a,c0620c
+   CarNumberDesignStr: 0,0,ffffff,777777,000000
+   CarSponsor_1: 93
+   CarSponsor_2: 124
+   ClubName: Ohio
+   DivisionName: Division 6
+   CurDriverIncidentCount: -1
+   TeamIncidentCount: -1
+
+SplitTimeInfo:
+ Sectors:
+ - SectorNum: 0
+   SectorStartPct: 0.000000
+ - SectorNum: 1
+   SectorStartPct: 0.231780
+ - SectorNum: 2
+   SectorStartPct: 0.479317
+ - SectorNum: 3
+   SectorStartPct: 0.633767
+
+CarSetup:
+ UpdateCount: 8
+ Suspension:
+  Front:
+   ToeIn: -1 mm
+   CrossWeight: 52.6%
+   AntiRollBar: Soft
+  LeftFront:
+   ColdPressure: 172 kPa
+   LastHotPressure: 172 kPa
+   LastTempsOMI: 41C, 41C, 41C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2558 N
+   RideHeight: 119 mm
+   SpringPerchOffset: 70 mm
+   BumpStiffness: +11 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -2.1 deg
+  LeftRear:
+   ColdPressure: 172 kPa
+   LastHotPressure: 172 kPa
+   LastTempsOMI: 41C, 41C, 41C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2482 N
+   RideHeight: 125 mm
+   SpringPerchOffset: 33 mm
+   BumpStiffness: +11 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -2.2 deg
+  RightFront:
+   ColdPressure: 179 kPa
+   LastHotPressure: 179 kPa
+   LastTempsIMO: 41C, 41C, 41C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2579 N
+   RideHeight: 119 mm
+   SpringPerchOffset: 70 mm
+   BumpStiffness: +11 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -2.2 deg
+  RightRear:
+   ColdPressure: 179 kPa
+   LastHotPressure: 179 kPa
+   LastTempsIMO: 41C, 41C, 41C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2008 N
+   RideHeight: 125 mm
+   SpringPerchOffset: 47 mm
+   BumpStiffness: +11 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -2.2 deg
+  Rear:
+   FuelLevel: 7.6 L
+   ToeIn: -0 mm
+   AntiRollBar: OEM
+
+...
+AirDensity                      1.203061580657959
+AirPressure                     29.34276008605957
+AirTemp                         27.316322326660156
+Brake                           1.0
+BrakeRaw                        0.0
+CamCameraNumber                 6
+CamCameraState                  83
+CamCarIdx                       8
+CamGroupNumber                  10
+CarIdxClassPosition             [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxEstTime                   [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+CarIdxF2Time                    [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+CarIdxGear                      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxLap                       [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxLapCompleted              [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxLapDistPct                [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+CarIdxOnPitRoad                 [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+CarIdxPosition                  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxRPM                       [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+CarIdxSteer                     [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+CarIdxTrackSurface              [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxTrackSurfaceMaterial      [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarLeftRight                    1
+Clutch                          0.0
+CpuUsageBG                      0.08700080215930939
+DCDriversSoFar                  1
+DCLapStatus                     2
+dcStarter                       False
+DisplayUnits                    1
+dpFastRepair                    0.0
+dpFuelAddKg                     0.0
+dpFuelFill                      0.0
+dpLFTireChange                  0.0
+dpLFTireColdPress               0.0
+dpLRTireChange                  0.0
+dpLRTireColdPress               0.0
+dpRFTireChange                  0.0
+dpRFTireColdPress               0.0
+dpRRTireChange                  0.0
+dpRRTireColdPress               0.0
+dpWindshieldTearoff             0.0
+DriverMarker                    False
+EngineWarnings                  0
+EnterExitReset                  0
+FogLevel                        0.0
+FrameRate                       84.44660186767578
+FuelLevel                       0.0
+FuelLevelPct                    0.0
+FuelPress                       1.1111847442180078e-08
+FuelUsePerHour                  0.5393118262290955
+Gear                            0
+HandbrakeRaw                    0.0
+IsDiskLoggingActive             False
+IsDiskLoggingEnabled            True
+IsInGarage                      False
+IsOnTrack                       False
+IsOnTrackCar                    False
+IsReplayPlaying                 True
+Lap                             0
+LapBestLap                      0
+LapBestLapTime                  0.0
+LapBestNLapLap                  0
+LapBestNLapTime                 0.0
+LapCompleted                    0
+LapCurrentLapTime               0.0
+LapDeltaToBestLap               0.0
+LapDeltaToBestLap_DD            0.0
+LapDeltaToBestLap_OK            False
+LapDeltaToOptimalLap            0.0
+LapDeltaToOptimalLap_DD         0.0
+LapDeltaToOptimalLap_OK         False
+LapDeltaToSessionBestLap        0.0
+LapDeltaToSessionBestLap_DD     0.0
+LapDeltaToSessionBestLap_OK     False
+LapDeltaToSessionLastlLap       0.0
+LapDeltaToSessionLastlLap_DD    0.0
+LapDeltaToSessionLastlLap_OK    False
+LapDeltaToSessionOptimalLap     0.0
+LapDeltaToSessionOptimalLap_DD  0.0
+LapDeltaToSessionOptimalLap_OK  False
+LapDist                         0.0
+LapDistPct                      0.0
+LapLasNLapSeq                   0
+LapLastLapTime                  0.0
+LapLastNLapTime                 0.0
+LatAccel                        0.09180876612663269
+LatAccel_ST                     [0.09180876612663269, 0.09180876612663269, 0.09180876612663269, 0.09180876612663269, 0.09180876612663269, 0.09180876612663269]
+LFbrakeLinePress                0.0
+LFcoldPressure                  172.3689422607422
+LFshockDefl                     0.10137706249952316
+LFshockDefl_ST                  [0.10137706249952316, 0.10137706249952316, 0.10137706249952316, 0.10137706249952316, 0.10137706249952316, 0.10137706249952316]
+LFshockVel                      0.0
+LFshockVel_ST                   [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+LFtempCL                        41.034393310546875
+LFtempCM                        41.034393310546875
+LFtempCR                        41.034393310546875
+LFwearL                         1.0
+LFwearM                         1.0
+LFwearR                         1.0
+LoadNumTextures                 False
+LongAccel                       -0.12197993695735931
+LongAccel_ST                    [-0.12197993695735931, -0.12197993695735931, -0.12197993695735931, -0.12197993695735931, -0.12197993695735931, -0.12197993695735931]
+LRbrakeLinePress                0.0
+LRcoldPressure                  172.3689422607422
+LRshockDefl                     0.10136181116104126
+LRshockDefl_ST                  [0.10136181116104126, 0.10136181116104126, 0.10136181116104126, 0.10136181116104126, 0.10136181116104126, 0.10136181116104126]
+LRshockVel                      0.0
+LRshockVel_ST                   [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+LRtempCL                        41.034393310546875
+LRtempCM                        41.034393310546875
+LRtempCR                        41.034393310546875
+LRwearL                         1.0
+LRwearM                         1.0
+LRwearR                         1.0
+ManifoldPress                   1.0
+ManualBoost                     False
+ManualNoBoost                   False
+OilLevel                        6.400000095367432
+OilPress                        0.0
+OilTemp                         77.0
+OkToReloadTextures              True
+OnPitRoad                       False
+Pitch                           0.0
+PitchRate                       3.705871449710685e-06
+PitchRate_ST                    [3.705871449710685e-06, 3.705871449710685e-06, 3.705871449710685e-06, 3.705871449710685e-06, 3.705871449710685e-06, 3.705871449710685e-06]
+PitOptRepairLeft                0.0
+PitRepairLeft                   0.0
+PitsOpen                        True
+PitSvFlags                      0
+PitSvFuel                       0.0
+PitSvLFP                        0.0
+PitSvLRP                        0.0
+PitSvRFP                        0.0
+PitSvRRP                        0.0
+PlayerCarClassPosition          -1
+PlayerCarDriverIncidentCount    0
+PlayerCarIdx                    8
+PlayerCarInPitStall             False
+PlayerCarMyIncidentCount        0
+PlayerCarPitSvStatus            0
+PlayerCarPosition               -1
+PlayerCarTeamIncidentCount      0
+PlayerCarTowTime                0.0
+PlayerCarWeightPenalty          0.0
+PlayerTrackSurface              -1
+PlayerTrackSurfaceMaterial      -1
+PushToPass                      False
+RaceLaps                        0
+RadioTransmitCarIdx             -1
+RadioTransmitFrequencyIdx       0
+RadioTransmitRadioIdx           0
+RelativeHumidity                0.5590122938156128
+ReplayFrameNum                  6554
+ReplayFrameNumEnd               1
+ReplayPlaySlowMotion            False
+ReplayPlaySpeed                 1
+ReplaySessionNum                1
+ReplaySessionTime               21.146665827433267
+RFbrakeLinePress                0.0
+RFcoldPressure                  179.1629638671875
+RFshockDefl                     0.10137560218572617
+RFshockDefl_ST                  [0.10137560218572617, 0.10137560218572617, 0.10137560218572617, 0.10137560218572617, 0.10137560218572617, 0.10137560218572617]
+RFshockVel                      0.0
+RFshockVel_ST                   [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+RFtempCL                        41.034393310546875
+RFtempCM                        41.034393310546875
+RFtempCR                        41.034393310546875
+RFwearL                         1.0
+RFwearM                         1.0
+RFwearR                         1.0
+Roll                            0.0
+RollRate                        -4.443927537067793e-05
+RollRate_ST                     [-4.443927537067793e-05, -4.443927537067793e-05, -4.443927537067793e-05, -4.443927537067793e-05, -4.443927537067793e-05, -4.443927537067793e-05]
+RPM                             300.0
+RRbrakeLinePress                0.0
+RRcoldPressure                  179.1629638671875
+RRshockDefl                     0.1014496386051178
+RRshockDefl_ST                  [0.1014496386051178, 0.1014496386051178, 0.1014496386051178, 0.1014496386051178, 0.1014496386051178, 0.1014496386051178]
+RRshockVel                      0.0
+RRshockVel_ST                   [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+RRtempCL                        41.034393310546875
+RRtempCM                        41.034393310546875
+RRtempCR                        41.034393310546875
+RRwearL                         1.0
+RRwearM                         1.0
+RRwearR                         1.0
+SessionFlags                    268435968
+SessionLapsRemain               2
+SessionLapsRemainEx             2
+SessionNum                      1
+SessionState                    4
+SessionTick                     44835
+SessionTime                     22.15000000248355
+SessionTimeOfDay                48622.0
+SessionTimeRemain               457.8666666641831
+SessionUniqueID                 2
+ShiftGrindRPM                   0.0
+ShiftIndicatorPct               0.0
+ShiftPowerPct                   0.0
+Skies                           1
+Speed                           0.0
+SteeringWheelAngle              0.0
+SteeringWheelAngleMax           17.278642654418945
+SteeringWheelPctDamper          0.0
+SteeringWheelPctTorque          0.0
+SteeringWheelPctTorqueSign      0.0
+SteeringWheelPctTorqueSignStops 0.0
+SteeringWheelPeakForceNm        23.0
+SteeringWheelTorque             -0.5410654544830322
+SteeringWheelTorque_ST          [-0.5410654544830322, -0.5410654544830322, -0.5410654544830322, -0.5410654544830322, -0.5410654544830322, -0.5410654544830322]
+Throttle                        0.0
+ThrottleRaw                     0.0
+TireLF_RumblePitch              0.0
+TireLR_RumblePitch              0.0
+TireRF_RumblePitch              0.0
+TireRR_RumblePitch              0.0
+TrackTemp                       40.0
+TrackTempCrew                   40.0
+VelocityX                       0.00016815238632261753
+VelocityX_ST                    [0.00016815238632261753, 0.00016815238632261753, 0.00016815238632261753, 0.00016815238632261753, 0.00016815238632261753, 0.00016815238632261753]
+VelocityY                       -0.00032301561441272497
+VelocityY_ST                    [-0.00032301561441272497, -0.00032301561441272497, -0.00032301561441272497, -0.00032301561441272497, -0.00032301561441272497, -0.00032301561441272497]
+VelocityZ                       -8.698413876118138e-05
+VelocityZ_ST                    [-8.698413876118138e-05, -8.698413876118138e-05, -8.698413876118138e-05, -8.698413876118138e-05, -8.698413876118138e-05, -8.698413876118138e-05]
+VertAccel                       9.809154510498047
+VertAccel_ST                    [9.809154510498047, 9.809154510498047, 9.809154510498047, 9.809154510498047, 9.809154510498047, 9.809154510498047]
+Voltage                         12.40000057220459
+WaterLevel                      5.0
+WaterTemp                       77.0
+WeatherType                     1
+WindDir                         2.2425012588500977
+WindVel                         1.7022944688796997
+Yaw                             0.0
+YawNorth                        0.0
+YawRate                         -1.0378044862591196e-05
+YawRate_ST                      [-1.0378044862591196e-05, -1.0378044862591196e-05, -1.0378044862591196e-05, -1.0378044862591196e-05, -1.0378044862591196e-05, -1.0378044862591196e-05]
