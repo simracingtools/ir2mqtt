@@ -48,17 +48,17 @@ the same directory as the script/application is executed.
 	
 	[global]
 	# Generates additional debug output. All MQTT and serial communication will be 
-	# logged. Comment out or set to no/false to disable
-	debug = yes
+	# logged. Comment out or set to yes/True to enable
+	debug = no
 	
 	# Serial communication port to send data to. Comment out to disable serial
 	# communication
-	serial = COM3
+	;serial = COM3
 	
 	# Uncomment to start the application using a data dump file from irsdk for 
-	# testing/development purposes. The dump file can be created
-	# issuing the command 'irsdk --dump data.dmp'
-	;simulate = data.dump
+	# testing/development purposes. The dump file can be created by issuing the 
+	# command 'irsdk --dump data.dmp'
+	;simulate = data/limerock-q.dmp
 	
 	[mqtt]
 	# Hostname of a MQTT broker to connect to. Comment out to disable MQTT 
@@ -73,17 +73,34 @@ the same directory as the script/application is executed.
 	
 	# Timezone used to publish the simulations TimeOfDay
 	timezone=CET
-
+	
 	[iracing]
 	# Mapping of irsdk values to MQTT topics.
 	# Format: mqttTopic = irsdkField
 	# The configuration key (mqtt topic is prepended by the baseTopic configuration 
 	# value). So a configuration line
+	#
 	# eventType = WeekendInfo/EventType
+	#
 	# will post the EventType value from the iRacing WeekendInfo data structure on
 	# the MQTT topic '/sensors/iRacing/eventType'
+	#
+	# For accessing list structures (e.g. Sessions in SessionInfo) you have to use 
+	# array notation:
+	#
+	# sessionType = SessionInfo/Sessions[0]/SessionType
+	#
+	# You can use 'last' as a special index value to retrieve the last element from
+	# the list. 
+	#
+	# Furthermore, you may use an other telemetry value as list index. Simply 
+	# prefix that value with a hast mark '#':
+	#
+	# sessionType = SessionInfo/Sessions[#SessionNum]/SessionType
+	
 	eventType = WeekendInfo/EventType
-	sessionType = SessionInfo/Sessions/SessionType
+	practiceTrackState = SessionInfo/Sessions[0]/SessionTrackRubberState
+	currentSessionType = SessionInfo/Sessions[#SessionNum]/SessionType
 
 ## State and TimeOfDay publishing
 

@@ -28,7 +28,7 @@ __email__ =  "rbausdorf@gmail.com"
 __license__ = "GPLv3"
 #__maintainer__ = "developer"
 __status__ = "Production"
-__version__ = "1.2"
+__version__ = "1.3"
 
 import irsdk
 import time
@@ -47,6 +47,7 @@ from irsdk import PitCommandMode
 
 debug = False
 
+
 # this is our State class, with some helpful variables
 class State:
     ir_connected = False
@@ -58,6 +59,7 @@ class State:
     longitude = -1
     elevation = -1
     mqttdict = {}
+    mqttConnected = False
 
 # Possible states given in Paho MQTT client callbacks 
 mqttRC = ['Connection successful', 
@@ -112,7 +114,8 @@ def check_iracing():
                 print('Unable to open port ' + ser.port + '. Serial communication is disabled')
                     
             print('irsdk connected')
-            mqtt_publish('state', 1)
+            if state.mqttConnected:
+                mqtt_publish('state', 1)
             
             # Get geographical track information and track timezone for
             # astronomical calculations
@@ -220,6 +223,33 @@ def readSerialData():
     except Exception as e:
         print('Error processing telegram: ' + str(e))
 
+def getIrsdkValue(top):
+    ind = top.split('/')
+    val = ir
+    for key in ind:
+        if val != None:
+            listkey = key.split('[')
+            if len(listkey) == 2:
+                listindex = listkey[1].rstrip(']')
+                idx = 0
+                if listindex == 'last':
+                    idx = len(val.__getitem__(listkey[0])) - 1
+                elif listindex[0] == '#':
+                    indirection = getIrsdkValue(listindex.lstrip('#'))
+                    if not isinstance(indirection, int):
+                        ixd = int(indirection)
+                    else:
+                        idx = indirection
+                     
+                else:
+                    idx = int(listindex)
+
+                val = val.__getitem__(listkey[0])[idx]
+            else:
+                val = val.__getitem__(key)
+    
+    return val
+    
 # our main loop, where we retrieve data
 # and do something useful with it
 def loop():
@@ -233,32 +263,32 @@ def loop():
 
     state.tick += 1
     # publish session time and configured telemetry values every minute
-    if state.tick % 60 == 1:
+    if state.tick % 60 == 1 and state.mqttConnected:
         publishSessionTime()
     
     # read and publish configured telemetry values every second - but only
     # if the value has changed in telemetry
     if config.has_section('iracing'):
         for top in config['iracing']:
-            ind = config.get('iracing', top).split('/')
-            val = ir
-            for key in ind:
+            try:
+                ind = config.get('iracing', top)
+                val = getIrsdkValue(ind)
                 if val != None:
-                    if isinstance(val, list):
-                        val = val[0].__getitem__(key)
-                    else:
-                        val = val.__getitem__(key)
-
-            if val != None:
-                try:
-                    lastVal = state.mqttdict[key]
-                    if lastVal == val:
-                        continue
-                except KeyError:
-                    state.mqttdict[key] = val
+                    try:
+                        lastVal = state.mqttdict[top]
+                        if lastVal == val:
+                            continue
+                        elif state.mqttConnected:
+                            state.mqttdict[top] = val
+                            mqtt_publish(top, val)
+                    except KeyError:
+                        if state.mqttConnected:
+                            state.mqttdict[top] = val
+                            mqtt_publish(top, val)
+                    
+            except Exception as e:
+                print('error getting value of ' + str(ind) + str(e))
                 
-                mqtt_publish(top, val)
-
     # Read/Write serial data as needed
     if useSerial and ser.is_open:
         writeSerialData()
@@ -275,15 +305,17 @@ def mqtt_publish(topic, data):
 def on_connect(client, userdata, flags, rc):
     print('MQTT: ' + mqttRC[rc])
     if rc==0:
+        state.mqttConnected = True
         if state.ir_connected:
             mqtt_publish('state', 1)
-            if state.date_time != -1:
-                mqtt_publish('ToD', state.date_time) 
+            if state.date_time == -1:
+                publishSessionTime() 
     else:
         print("Bad connection Returned code=",rc)
 
 # Paho MQTT callback
 def on_disconnect(client, userdata, rc):
+    state.mqttConnected = False
     if rc==0:
         print('MQTT: connection terminated')
     else:
