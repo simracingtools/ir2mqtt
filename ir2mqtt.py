@@ -87,8 +87,9 @@ def check_iracing():
         state.mqttdict = {}
 
         # Close serial port to buttonbox
-        if ser.is_open:
-            ser.close()
+        for ind in ser:
+            if ser[ind].is_open:
+                ser[ind].close()
 
         # we are shut down ir library (clear all internal variables)
         ir.shutdown()
@@ -107,11 +108,12 @@ def check_iracing():
         if is_startup and ir.is_initialized and ir.is_connected:
             state.ir_connected = True
             # Check need and open serial connection
-            try:
-                if config.has_option('global', 'serial'):
-                    ser.open()
-            except Exception:
-                print('Unable to open port ' + ser.port + '. Serial communication is disabled')
+            if config.has_option('global', 'serial'):
+                for ind in ser:
+                    try:
+                        ser[ind].open()
+                    except Exception:
+                        print('Unable to open port ' + ser[ind].port + '. Serial communication is disabled')
                     
             print('irsdk connected')
             if state.mqttConnected:
@@ -177,34 +179,34 @@ def publishLightInfo(dateAndTime):
         mqtt_publish('lightinfo', lightinfo)
 
 
-def writeSerialData():
+def writeSerialData(serial):
     # Read pit flags from telemetry if it has changed and
     # send it to serial port
     pit_svflags = ir['PitSvFlags']
     if state.pitFlags != pit_svflags:
-        ser.write(('#PFL=' + str(pit_svflags) + '*').encode('ascii'))
+        serial.write(('#PFL=' + str(pit_svflags) + '*').encode('ascii'))
         state.pitFlags = pit_svflags
-        print('SERIAL> ' + '#PFL=' + str(pit_svflags) + '*')
+        print('SERIAL[' + str(serial.port) + ']> ' + '#PFL=' + str(pit_svflags) + '*')
 
     # Read pit refuel amount from telemetry if it has changed and
     # send it to serial port
     pit_svfuel = ir['PitSvFuel']
     if state.pitFuel != pit_svfuel:
-        ser.write(('#PFU=' + str(pit_svfuel)[0:3] + '*').encode('ascii'))
+        serial.write(('#PFU=' + str(pit_svfuel)[0:3] + '*').encode('ascii'))
         state.pitFuel = pit_svfuel
-        print('SERIAL> ' + '#PFU=' + str(pit_svfuel)[0:3] + '*')
+        print('SERIAL[' + str(serial.port) + ']> ' + '#PFU=' + str(pit_svfuel)[0:3] + '*')
 
-def readSerialData():
+def readSerialData(serial):
     try: 
         # Check if data is available on serial port
-        telegram = str(ser.readline())
+        telegram = str(serial.readline())
     
         try:
             # Determine the telegram part in serial data
             start = telegram.index('#')
             end = telegram.index('*')
             telegram = telegram[start + 1:end]
-            print('SERIAL< ' + telegram)
+            print('SERIAL[' + str(serial.port) + ']< ' + telegram)
             keyvalue = telegram.split('=')
     
             # Check if telegram key and send the appropriate pit command to iRacing
@@ -290,9 +292,11 @@ def loop():
                 print('error getting value of ' + str(ind) + str(e))
                 
     # Read/Write serial data as needed
-    if useSerial and ser.is_open:
-        writeSerialData()
-        readSerialData()
+    if useSerial:
+        for ind in ser:
+            if ser[ind].is_open:
+                writeSerialData(serial)
+                readSerialData(serial)
 
 
 def mqtt_publish(topic, data):
@@ -362,15 +366,19 @@ if __name__ == '__main__':
         print('unable to connect to mqtt broker')
 
     # Initialize and configure serial port
-    ser = serial.Serial()
+    ser = {} #serial.Serial()
     useSerial = False
     if config.has_option('global', 'serial'):
-        ser.port =  config['global']['serial']
-        ser.baudrate = 9600
-        ser.timeout = 1
+        ports = config['global']['serial'].split(',')
         useSerial = True
-        print('using COM port: ' + str(ser.port))
+        for port in ports:
+            ser[port] = serial.Serial()
+            ser[port].port = port
+            ser[port].baudrate = 9600
+            ser[port].timeout = 1
 
+    for ind in ser:
+        print('using COM port: ' + str(ser[ind].port))
     # Initialize astronomical calculator and timezone finder
     geoTime = astral.Astral()
     geoTime.solar_depression = 'civil'
@@ -396,8 +404,10 @@ if __name__ == '__main__':
         if state.ir_connected:
             mqtt_publish('state', 0)
         
-        if useSerial and ser.is_open:
-            ser.close()
+        if useSerial:
+            for ind in ser:
+                if ser[ind].is_open:
+                    ser[ind].close()
 
         mqttClient.loop_stop()
         mqttClient.disconnect()
