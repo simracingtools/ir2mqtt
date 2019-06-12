@@ -52,8 +52,6 @@ debug = False
 class State:
     ir_connected = False
     date_time = -1
-    pitFlags = -1
-    pitFuel = -1
     tick = 0
     latitude = -1
     longitude = -1
@@ -77,8 +75,6 @@ def check_iracing():
         state.ir_connected = False
         # don't forget to reset all your in State variables
         state.date_time = -1
-        state.pitFlags = -1
-        state.pitFuel = -1
         state.tick = 0
         state.latitude = -1
         state.longitude = -1
