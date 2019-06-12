@@ -28,7 +28,7 @@ __email__ =  "rbausdorf@gmail.com"
 __license__ = "GPLv3"
 #__maintainer__ = "developer"
 __status__ = "Production"
-__version__ = "1.3"
+__version__ = "1.4"
 
 import irsdk
 import time
@@ -178,24 +178,6 @@ def publishLightInfo(dateAndTime):
         print('lightinfo: ' + lightinfo)
         mqtt_publish('lightinfo', lightinfo)
 
-
-def writeSerialData(serial):
-    # Read pit flags from telemetry if it has changed and
-    # send it to serial port
-    pit_svflags = ir['PitSvFlags']
-    if state.pitFlags != pit_svflags:
-        serial.write(('#PFL=' + str(pit_svflags) + '*').encode('ascii'))
-        state.pitFlags = pit_svflags
-        print('SERIAL[' + str(serial.port) + ']> ' + '#PFL=' + str(pit_svflags) + '*')
-
-    # Read pit refuel amount from telemetry if it has changed and
-    # send it to serial port
-    pit_svfuel = ir['PitSvFuel']
-    if state.pitFuel != pit_svfuel:
-        serial.write(('#PFU=' + str(pit_svfuel)[0:3] + '*').encode('ascii'))
-        state.pitFuel = pit_svfuel
-        print('SERIAL[' + str(serial.port) + ']> ' + '#PFU=' + str(pit_svfuel)[0:3] + '*')
-
 def readSerialData(serial):
     try: 
         # Check if data is available on serial port
@@ -293,10 +275,33 @@ def loop():
                 
     # Read/Write serial data as needed
     if useSerial:
+        if config.has_section('serial'):
+            for top in config['serial']:
+                try:
+                    ind = config.get('serial', top)
+                    val = getIrsdkValue(ind)
+                    if val != None:
+                        try:
+                            lastVal = state.mqttdict[top]
+                            if lastVal == val:
+                                continue
+                            else:
+                                state.mqttdict[top] = val
+                        except KeyError:
+                            state.mqttdict[top] = val
+                        
+                        for ind in ser:
+                            if ser[ind].is_open:
+                                telegram = '#' + top.upper() + '=' + str(val) + '*';
+                                print('SERIAL[' + str(serial.port) + ']> ' + telegram);
+                                ser[ind].write(telegram.encode('ascii'))
+
+                except Exception as e:
+                    print('error getting value of ' + str(ind) + str(e))
+
         for ind in ser:
             if ser[ind].is_open:
-                writeSerialData(serial)
-                readSerialData(serial)
+                readSerialData(ser[ind])
 
 
 def mqtt_publish(topic, data):
