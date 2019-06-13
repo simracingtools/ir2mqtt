@@ -208,14 +208,19 @@ def getIrsdkValue(top):
     val = ir
     for key in ind:
         if val != None:
-            listkey = key.split('[')
+            listkey = key.split('[', 1)
             if len(listkey) == 2:
                 listindex = listkey[1].rstrip(']')
                 idx = 0
                 if listindex == 'last':
                     idx = len(val.__getitem__(listkey[0])) - 1
+                elif listindex[0] == '$':
+                    try:
+                        indirection = state.mqttdict[listindex.lstrip('$')]
+                    except KeyError as e:
+                        print('value of "' + listindex.lstrip('$') + '" not avilable at this time')
                 elif listindex[0] == '#':
-                    indirection = getIrsdkValue(listindex.lstrip('#'))
+                    indirection = getIrsdkValue(listindex.lstrip('#').replace('&', '/'))
                     if not isinstance(indirection, int):
                         ixd = int(indirection)
                     else:
@@ -302,7 +307,7 @@ def loop():
 
 def mqtt_publish(topic, data):
     top = config['mqtt']['baseTopic'] + '/' + topic
-    mqttClient.publish(top, data)
+    mqttClient.publish(top, str(data))
     if debug:
         print('DEBUG mqtt_publish(' + top + ', ' + str(data) + ')')
 
