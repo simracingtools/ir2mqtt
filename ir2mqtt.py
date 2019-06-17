@@ -174,17 +174,17 @@ def publishLightInfo(dateAndTime):
         print('lightinfo: ' + lightinfo)
         mqtt_publish('lightinfo', lightinfo)
 
-def readSerialData(serial):
+def readSerialData(connection):
     try: 
         # Check if data is available on serial port
-        telegram = str(serial.readline())
+        telegram = str(connection.readline())
     
         try:
             # Determine the telegram part in serial data
             start = telegram.index('#')
             end = telegram.index('*')
             telegram = telegram[start + 1:end]
-            print('SERIAL[' + str(serial.port) + ']< ' + telegram)
+            print('SERIAL[' + str(connection.port) + ']< ' + telegram)
             keyvalue = telegram.split('=')
     
             # Check if telegram key and send the appropriate pit command to iRacing
@@ -294,7 +294,7 @@ def loop():
                         for ind in ser:
                             if ser[ind].is_open:
                                 telegram = '#' + top.upper() + '=' + str(val) + '*';
-                                print('SERIAL[' + str(serial.port) + ']> ' + telegram);
+                                print('SERIAL[' + str(ser[ind].port) + ']> ' + telegram);
                                 ser[ind].write(telegram.encode('ascii'))
 
                 except Exception as e:
