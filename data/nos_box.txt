@@ -1,0 +1,1127 @@
+---
+WeekendInfo:
+ TrackName: nurburgring combinedshorta
+ TrackID: 263
+ TrackLength: 23.65 km
+ TrackDisplayName: Gesamtstrecke Short w/out Arena
+ TrackDisplayShortName: Gesamtstrecke Short w/out Arena
+ TrackConfigName: 
+ TrackCity: Nürburg
+ TrackCountry: Germany
+ TrackAltitude: 619.82 m
+ TrackLatitude: 50.335881 m
+ TrackLongitude: 6.948056 m
+ TrackNorthOffset: 1.5446 rad
+ TrackNumTurns: 164
+ TrackPitSpeedLimit: 60.00 kph
+ TrackType: road course
+ TrackDirection: neutral
+ TrackWeatherType: Specified / Dynamic Sky
+ TrackSkies: Partly Cloudy
+ TrackSurfaceTemp: 39.80 C
+ TrackAirTemp: 25.55 C
+ TrackAirPressure: 27.79 Hg
+ TrackWindVel: 0.89 m/s
+ TrackWindDir: 0.00 rad
+ TrackRelativeHumidity: 55 %
+ TrackFogLevel: 0 %
+ TrackCleanup: 1
+ TrackDynamicTrack: 1
+ SeriesID: 0
+ SeasonID: 0
+ SessionID: 0
+ SubSessionID: 0
+ LeagueID: 0
+ Official: 0
+ RaceWeek: 0
+ EventType: Test
+ Category: Road
+ SimMode: full
+ TeamRacing: 0
+ MinDrivers: 0
+ MaxDrivers: 0
+ DCRuleSet: None
+ QualifierMustStartRace: 0
+ NumCarClasses: 1
+ NumCarTypes: 1
+ HeatRacing: 0
+ WeekendOptions:
+  NumStarters: 0
+  StartingGrid: single file
+  QualifyScoring: best lap
+  CourseCautions: off
+  StandingStart: 0
+  Restarts: single file
+  WeatherType: Specified / Dynamic Sky
+  Skies: Partly Cloudy
+  WindDirection: N
+  WindSpeed: 3.22 km/h
+  WeatherTemp: 25.56 C
+  RelativeHumidity: 55 %
+  FogLevel: 0 %
+  TimeOfDay: 3:00 pm
+  Date: 2019-06-15
+  EarthRotationSpeedupFactor: 1
+  Unofficial: 0
+  CommercialMode: consumer
+  NightMode: variable
+  IsFixedSetup: 0
+  StrictLapsChecking: default
+  HasOpenRegistration: 0
+  HardcoreLevel: 1
+  NumJokerLaps: 0
+  IncidentLimit: unlimited
+ TelemetryOptions:
+  TelemetryDiskFile: "D /Users/robert/Documents/iRacing/telemetry/mx5 mx52016_nurburgring combinedshorta 2019-06-14 00-14-22.ibt"
+
+SessionInfo:
+ Sessions:
+ - SessionNum: 0
+   SessionLaps: unlimited
+   SessionTime: unlimited
+   SessionNumLapsToAvg: 0
+   SessionType: Offline Testing
+   SessionTrackRubberState: moderately low usage
+   SessionName: TESTING
+   SessionSubType: 
+   SessionSkipped: 0
+   SessionRunGroupsUsed: 0
+   ResultsPositions:
+   ResultsFastestLap:
+   - CarIdx: 255
+     FastestLap: 0
+     FastestTime: -1.0000
+   ResultsAverageLapTime: -1.0000
+   ResultsNumCautionFlags: 0
+   ResultsNumCautionLaps: 0
+   ResultsNumLeadChanges: 0
+   ResultsLapsComplete: -1
+   ResultsOfficial: 0
+
+CameraInfo:
+ Groups:
+ - GroupNum: 1
+   GroupName: Nose
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamNose
+ - GroupNum: 2
+   GroupName: Gearbox
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamGearbox
+ - GroupNum: 3
+   GroupName: Roll Bar
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRoll Bar
+ - GroupNum: 4
+   GroupName: LF Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamLF Susp
+ - GroupNum: 5
+   GroupName: LR Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamLR Susp
+ - GroupNum: 6
+   GroupName: Gyro
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamGyro
+ - GroupNum: 7
+   GroupName: RF Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRF Susp
+ - GroupNum: 8
+   GroupName: RR Susp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRR Susp
+ - GroupNum: 9
+   GroupName: Cockpit
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamCockpit
+ - GroupNum: 10
+   GroupName: Blimp
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamBlimp_00
+   - CameraNum: 2
+     CameraName: CamBlimp_01
+   - CameraNum: 3
+     CameraName: CamBlimp_02
+   - CameraNum: 4
+     CameraName: CamBlimp_03
+   - CameraNum: 5
+     CameraName: CamBlimp_04
+   - CameraNum: 6
+     CameraName: CamBlimp_05
+   - CameraNum: 7
+     CameraName: CamBlimp_06
+   - CameraNum: 8
+     CameraName: CamBlimp_07
+   - CameraNum: 9
+     CameraName: CamBlimp_08
+   - CameraNum: 10
+     CameraName: CamBlimp_09
+ - GroupNum: 11
+   GroupName: Chopper
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamChopper
+ - GroupNum: 12
+   GroupName: Chase
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamChase
+ - GroupNum: 13
+   GroupName: Far Chase
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamFar Chase
+ - GroupNum: 14
+   GroupName: Rear Chase
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamRear Chase
+ - GroupNum: 15
+   GroupName: Pit Lane
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamPit Lane
+ - GroupNum: 16
+   GroupName: Pit Lane 2
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamPit Lane 2
+ - GroupNum: 17
+   GroupName: Scenic
+   IsScenic: true
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamPit Lane
+   - CameraNum: 2
+     CameraName: Scenic_00
+   - CameraNum: 3
+     CameraName: Scenic_01
+   - CameraNum: 4
+     CameraName: Scenic_02
+   - CameraNum: 5
+     CameraName: Scenic_03
+   - CameraNum: 6
+     CameraName: Scenic_04
+   - CameraNum: 7
+     CameraName: Scenic_05
+   - CameraNum: 8
+     CameraName: Scenic_06
+   - CameraNum: 9
+     CameraName: Scenic_07
+   - CameraNum: 10
+     CameraName: Scenic_08
+   - CameraNum: 11
+     CameraName: Scenic_09
+   - CameraNum: 12
+     CameraName: Scenic_10
+   - CameraNum: 13
+     CameraName: Scenic_11
+   - CameraNum: 14
+     CameraName: Scenic_12
+   - CameraNum: 15
+     CameraName: Scenic_13
+   - CameraNum: 16
+     CameraName: Scenic_14
+   - CameraNum: 17
+     CameraName: Scenic_15
+   - CameraNum: 18
+     CameraName: Scenic_16
+   - CameraNum: 19
+     CameraName: Scenic_17
+ - GroupNum: 18
+   GroupName: TV1
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamTV1_00
+   - CameraNum: 2
+     CameraName: CamTV1_62
+   - CameraNum: 3
+     CameraName: CamTV1_01
+   - CameraNum: 4
+     CameraName: CamTV1_64
+   - CameraNum: 5
+     CameraName: CamTV1_02
+   - CameraNum: 6
+     CameraName: CamTV1_03
+   - CameraNum: 7
+     CameraName: CamTV1_04
+   - CameraNum: 8
+     CameraName: CamTV1_05
+   - CameraNum: 9
+     CameraName: CamTV1_06
+   - CameraNum: 10
+     CameraName: CamTV1_14
+   - CameraNum: 11
+     CameraName: CamTV1_31
+   - CameraNum: 12
+     CameraName: CamTV1_07
+   - CameraNum: 13
+     CameraName: CamTV1_08
+   - CameraNum: 14
+     CameraName: CamTV1_28
+   - CameraNum: 15
+     CameraName: CamTV1_38
+   - CameraNum: 16
+     CameraName: CamTV1_43
+   - CameraNum: 17
+     CameraName: CamTV1_47
+   - CameraNum: 18
+     CameraName: CamTV1_51
+   - CameraNum: 19
+     CameraName: CamTV1_55
+   - CameraNum: 20
+     CameraName: CamTV1_59
+   - CameraNum: 21
+     CameraName: CamTV1_09
+   - CameraNum: 22
+     CameraName: CamTV1_10
+   - CameraNum: 23
+     CameraName: CamTV1_29
+   - CameraNum: 24
+     CameraName: CamTV1_11
+   - CameraNum: 25
+     CameraName: CamTV1_12
+   - CameraNum: 26
+     CameraName: CamTV1_30
+   - CameraNum: 27
+     CameraName: CamTV1_39
+   - CameraNum: 28
+     CameraName: CamTV1_13
+   - CameraNum: 29
+     CameraName: CamTV1_15
+   - CameraNum: 30
+     CameraName: CamTV1_16
+   - CameraNum: 31
+     CameraName: CamTV1_32
+   - CameraNum: 32
+     CameraName: CamTV1_40
+   - CameraNum: 33
+     CameraName: CamTV1_44
+   - CameraNum: 34
+     CameraName: CamTV1_48
+   - CameraNum: 35
+     CameraName: CamTV1_52
+   - CameraNum: 36
+     CameraName: CamTV1_56
+   - CameraNum: 37
+     CameraName: CamTV1_60
+   - CameraNum: 38
+     CameraName: CamTV1_17
+   - CameraNum: 39
+     CameraName: CamTV1_18
+   - CameraNum: 40
+     CameraName: CamTV1_33
+   - CameraNum: 41
+     CameraName: CamTV1_19
+   - CameraNum: 42
+     CameraName: CamTV1_20
+   - CameraNum: 43
+     CameraName: CamTV1_34
+   - CameraNum: 44
+     CameraName: CamTV1_41
+   - CameraNum: 45
+     CameraName: CamTV1_45
+   - CameraNum: 46
+     CameraName: CamTV1_49
+   - CameraNum: 47
+     CameraName: CamTV1_53
+   - CameraNum: 48
+     CameraName: CamTV1_57
+   - CameraNum: 49
+     CameraName: CamTV1_61
+   - CameraNum: 50
+     CameraName: CamTV1_21
+   - CameraNum: 51
+     CameraName: CamTV1_22
+   - CameraNum: 52
+     CameraName: CamTV1_35
+   - CameraNum: 53
+     CameraName: CamTV1_23
+   - CameraNum: 54
+     CameraName: CamTV1_24
+   - CameraNum: 55
+     CameraName: CamTV1_36
+   - CameraNum: 56
+     CameraName: CamTV1_42
+   - CameraNum: 57
+     CameraName: CamTV1_46
+   - CameraNum: 58
+     CameraName: CamTV1_50
+   - CameraNum: 59
+     CameraName: CamTV1_54
+   - CameraNum: 60
+     CameraName: CamTV1_58
+   - CameraNum: 61
+     CameraName: CamTV1_25
+   - CameraNum: 62
+     CameraName: CamTV1_26
+   - CameraNum: 63
+     CameraName: CamTV1_37
+   - CameraNum: 64
+     CameraName: CamTV1_27
+   - CameraNum: 65
+     CameraName: CamTV1_63
+   - CameraNum: 66
+     CameraName: CamTV1_65
+ - GroupNum: 19
+   GroupName: TV2
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamTV2_00
+   - CameraNum: 2
+     CameraName: CamTV2_66
+   - CameraNum: 3
+     CameraName: CamTV2_65
+   - CameraNum: 4
+     CameraName: CamTV2_64
+   - CameraNum: 5
+     CameraName: CamTV2_63
+   - CameraNum: 6
+     CameraName: CamTV2_62
+   - CameraNum: 7
+     CameraName: CamTV2_61
+   - CameraNum: 8
+     CameraName: CamTV2_60
+   - CameraNum: 9
+     CameraName: CamTV2_59
+   - CameraNum: 10
+     CameraName: CamTV2_58
+   - CameraNum: 11
+     CameraName: CamTV2_57
+   - CameraNum: 12
+     CameraName: CamTV2_56
+   - CameraNum: 13
+     CameraName: CamTV2_55
+   - CameraNum: 14
+     CameraName: CamTV2_54
+   - CameraNum: 15
+     CameraName: CamTV2_53
+   - CameraNum: 16
+     CameraName: CamTV2_52
+   - CameraNum: 17
+     CameraName: CamTV2_51
+   - CameraNum: 18
+     CameraName: CamTV2_50
+   - CameraNum: 19
+     CameraName: CamTV2_49
+   - CameraNum: 20
+     CameraName: CamTV2_48
+   - CameraNum: 21
+     CameraName: CamTV2_47
+   - CameraNum: 22
+     CameraName: CamTV2_46
+   - CameraNum: 23
+     CameraName: CamTV2_45
+   - CameraNum: 24
+     CameraName: CamTV2_44
+   - CameraNum: 25
+     CameraName: CamTV2_43
+   - CameraNum: 26
+     CameraName: CamTV2_42
+   - CameraNum: 27
+     CameraName: CamTV2_41
+   - CameraNum: 28
+     CameraName: CamTV2_40
+   - CameraNum: 29
+     CameraName: CamTV2_39
+   - CameraNum: 30
+     CameraName: CamTV2_38
+   - CameraNum: 31
+     CameraName: CamTV2_37
+   - CameraNum: 32
+     CameraName: CamTV2_36
+   - CameraNum: 33
+     CameraName: CamTV2_35
+   - CameraNum: 34
+     CameraName: CamTV2_34
+   - CameraNum: 35
+     CameraName: CamTV2_33
+   - CameraNum: 36
+     CameraName: CamTV2_32
+   - CameraNum: 37
+     CameraName: CamTV2_31
+   - CameraNum: 38
+     CameraName: CamTV2_30
+   - CameraNum: 39
+     CameraName: CamTV2_29
+   - CameraNum: 40
+     CameraName: CamTV2_28
+   - CameraNum: 41
+     CameraName: CamTV2_27
+   - CameraNum: 42
+     CameraName: CamTV2_26
+   - CameraNum: 43
+     CameraName: CamTV2_25
+   - CameraNum: 44
+     CameraName: CamTV2_24
+   - CameraNum: 45
+     CameraName: CamTV2_23
+   - CameraNum: 46
+     CameraName: CamTV2_20
+   - CameraNum: 47
+     CameraName: CamTV2_21
+   - CameraNum: 48
+     CameraName: CamTV2_22
+   - CameraNum: 49
+     CameraName: CamTV2_19
+   - CameraNum: 50
+     CameraName: CamTV2_18
+   - CameraNum: 51
+     CameraName: CamTV2_17
+   - CameraNum: 52
+     CameraName: CamTV2_16
+   - CameraNum: 53
+     CameraName: CamTV2_15
+   - CameraNum: 54
+     CameraName: CamTV2_14
+   - CameraNum: 55
+     CameraName: CamTV2_13
+   - CameraNum: 56
+     CameraName: CamTV2_12
+   - CameraNum: 57
+     CameraName: CamTV2_11
+   - CameraNum: 58
+     CameraName: CamTV2_10
+   - CameraNum: 59
+     CameraName: CamTV2_09
+   - CameraNum: 60
+     CameraName: CamTV2_08
+   - CameraNum: 61
+     CameraName: CamTV2_07
+   - CameraNum: 62
+     CameraName: CamTV2_06
+   - CameraNum: 63
+     CameraName: CamTV2_05
+   - CameraNum: 64
+     CameraName: CamTV2_04
+   - CameraNum: 65
+     CameraName: CamTV2_03
+   - CameraNum: 66
+     CameraName: CamTV2_02
+   - CameraNum: 67
+     CameraName: CamTV2_01
+ - GroupNum: 20
+   GroupName: TV3
+   Cameras:
+   - CameraNum: 1
+     CameraName: CamTV3_00
+   - CameraNum: 2
+     CameraName: CamTV3_01
+   - CameraNum: 3
+     CameraName: CamTV3_02
+   - CameraNum: 4
+     CameraName: CamTV3_03
+   - CameraNum: 5
+     CameraName: CamTV3_04
+   - CameraNum: 6
+     CameraName: CamTV3_05
+   - CameraNum: 7
+     CameraName: CamTV3_15
+   - CameraNum: 8
+     CameraName: CamTV3_46
+   - CameraNum: 9
+     CameraName: CamTV3_06
+   - CameraNum: 10
+     CameraName: CamTV3_07
+   - CameraNum: 11
+     CameraName: CamTV3_16
+   - CameraNum: 12
+     CameraName: CamTV3_47
+   - CameraNum: 13
+     CameraName: CamTV3_08
+   - CameraNum: 14
+     CameraName: CamTV3_09
+   - CameraNum: 15
+     CameraName: CamTV3_10
+   - CameraNum: 16
+     CameraName: CamTV3_11
+   - CameraNum: 17
+     CameraName: CamTV3_12
+   - CameraNum: 18
+     CameraName: CamTV3_13
+   - CameraNum: 19
+     CameraName: CamTV3_14
+   - CameraNum: 20
+     CameraName: CamTV3_17
+   - CameraNum: 21
+     CameraName: CamTV3_48
+   - CameraNum: 22
+     CameraName: CamTV3_18
+   - CameraNum: 23
+     CameraName: CamTV3_49
+   - CameraNum: 24
+     CameraName: CamTV3_19
+   - CameraNum: 25
+     CameraName: CamTV3_50
+   - CameraNum: 26
+     CameraName: CamTV3_20
+   - CameraNum: 27
+     CameraName: CamTV3_51
+   - CameraNum: 28
+     CameraName: CamTV3_21
+   - CameraNum: 29
+     CameraName: CamTV3_52
+   - CameraNum: 30
+     CameraName: CamTV3_22
+   - CameraNum: 31
+     CameraName: CamTV3_53
+   - CameraNum: 32
+     CameraName: CamTV3_54
+   - CameraNum: 33
+     CameraName: CamTV3_24
+   - CameraNum: 34
+     CameraName: CamTV3_55
+   - CameraNum: 35
+     CameraName: CamTV3_56
+   - CameraNum: 36
+     CameraName: CamTV3_25
+   - CameraNum: 37
+     CameraName: CamTV3_26
+   - CameraNum: 38
+     CameraName: CamTV3_57
+   - CameraNum: 39
+     CameraName: CamTV3_27
+   - CameraNum: 40
+     CameraName: CamTV3_58
+   - CameraNum: 41
+     CameraName: CamTV3_28
+   - CameraNum: 42
+     CameraName: CamTV3_59
+   - CameraNum: 43
+     CameraName: CamTV3_29
+   - CameraNum: 44
+     CameraName: CamTV3_60
+   - CameraNum: 45
+     CameraName: CamTV3_30
+   - CameraNum: 46
+     CameraName: CamTV3_61
+   - CameraNum: 47
+     CameraName: CamTV3_31
+   - CameraNum: 48
+     CameraName: CamTV3_62
+   - CameraNum: 49
+     CameraName: CamTV3_32
+   - CameraNum: 50
+     CameraName: CamTV3_63
+   - CameraNum: 51
+     CameraName: CamTV3_33
+   - CameraNum: 52
+     CameraName: CamTV3_64
+   - CameraNum: 53
+     CameraName: CamTV3_34
+   - CameraNum: 54
+     CameraName: CamTV3_65
+   - CameraNum: 55
+     CameraName: CamTV3_35
+   - CameraNum: 56
+     CameraName: CamTV3_66
+   - CameraNum: 57
+     CameraName: CamTV3_36
+   - CameraNum: 58
+     CameraName: CamTV3_67
+   - CameraNum: 59
+     CameraName: CamTV3_37
+   - CameraNum: 60
+     CameraName: CamTV3_68
+   - CameraNum: 61
+     CameraName: CamTV3_38
+   - CameraNum: 62
+     CameraName: CamTV3_69
+   - CameraNum: 63
+     CameraName: CamTV3_39
+   - CameraNum: 64
+     CameraName: CamTV3_40
+   - CameraNum: 65
+     CameraName: CamTV3_41
+   - CameraNum: 66
+     CameraName: CamTV3_42
+   - CameraNum: 67
+     CameraName: CamTV3_43
+   - CameraNum: 68
+     CameraName: CamTV3_44
+   - CameraNum: 69
+     CameraName: CamTV3_45
+   - CameraNum: 70
+     CameraName: CamTV3_23
+
+RadioInfo:
+ SelectedRadioNum: 0
+ Radios:
+ - RadioNum: 0
+   HopCount: 2
+   NumFrequencies: 7
+   TunedToFrequencyNum: 0
+   ScanningIsOn: 1
+   Frequencies:
+   - FrequencyNum: 0
+     FrequencyName: "@ALLTEAMS"
+     Priority: 12
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 1
+     IsDeletable: 0
+   - FrequencyNum: 1
+     FrequencyName: "@DRIVERS"
+     Priority: 15
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 1
+     IsDeletable: 0
+   - FrequencyNum: 2
+     FrequencyName: "@TEAM"
+     Priority: 60
+     CarIdx: 0
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 0
+     IsDeletable: 0
+   - FrequencyNum: 3
+     FrequencyName: "@CLUB"
+     Priority: 20
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 42
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 1
+     IsDeletable: 0
+   - FrequencyNum: 4
+     FrequencyName: "@ADMIN"
+     Priority: 90
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 0
+     IsDeletable: 0
+   - FrequencyNum: 5
+     FrequencyName: "@RACECONTROL"
+     Priority: 80
+     CarIdx: -1
+     EntryIdx: -1
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 0
+     IsDeletable: 0
+   - FrequencyNum: 6
+     FrequencyName: "@PRIVATE"
+     Priority: 70
+     CarIdx: -1
+     EntryIdx: 0
+     ClubID: 0
+     CanScan: 1
+     CanSquawk: 1
+     Muted: 0
+     IsMutable: 0
+     IsDeletable: 0
+
+DriverInfo:
+ DriverCarIdx: 0
+ DriverUserID: 229120
+ PaceCarIdx: -1
+ DriverHeadPosX: -0.416
+ DriverHeadPosY: 0.344
+ DriverHeadPosZ: 0.660
+ DriverCarIdleRPM: 875.000
+ DriverCarRedLine: 6850.000
+ DriverCarEngCylinderCount: 4
+ DriverCarFuelKgPerLtr: 0.750
+ DriverCarFuelMaxLtr: 44.987
+ DriverCarMaxFuelPct: 0.300
+ DriverCarSLFirstRPM: 6000.000
+ DriverCarSLShiftRPM: 6850.000
+ DriverCarSLLastRPM: 6850.000
+ DriverCarSLBlinkRPM: 7000.000
+ DriverPitTrkPct: 0.012548
+ DriverCarEstLapTime: 581.7951
+ DriverSetupName: Nurburgring-s2-19.sto
+ DriverSetupIsModified: 0
+ DriverSetupLoadTypeName: user
+ DriverSetupPassedTech: 1
+ DriverIncidentCount: 0
+ Drivers:
+ - CarIdx: 0
+   UserName: Robert Bausdorf
+   AbbrevName: 
+   Initials: 
+   UserID: 229120
+   TeamID: 0
+   TeamName: Robert Bausdorf
+   CarNumber: "42"
+   CarNumberRaw: 42
+   CarPath: mx5 mx52016
+   CarClassID: 74
+   CarID: 67
+   CarIsPaceCar: 0
+   CarIsAI: 0
+   CarScreenName: Mazda MX-5 Cup
+   CarScreenNameShort: MX-5 Cup
+   CarClassShortName: 
+   CarClassRelSpeed: 0
+   CarClassLicenseLevel: 0
+   CarClassMaxFuelPct: 0.300 %
+   CarClassWeightPenalty: 0.000 kg
+   CarClassColor: 0xffffff
+   IRating: 1
+   LicLevel: 1
+   LicSubLevel: 1
+   LicString: R 0.01
+   LicColor: 0x0153db
+   IsSpectator: 0
+   CarDesignStr: 21,000000,FD960D,FDFCFC;FF980A
+   HelmetDesignStr: 15,000000,ff0505,fee301
+   SuitDesignStr: 23,2A3795,fdfcfc,080707
+   CarNumberDesignStr: 0,0,F5F5F5,777777,000000
+   CarSponsor_1: 97
+   CarSponsor_2: 74
+   CurDriverIncidentCount: 0
+   TeamIncidentCount: 0
+
+SplitTimeInfo:
+ Sectors:
+ - SectorNum: 0
+   SectorStartPct: 0.000000
+ - SectorNum: 1
+   SectorStartPct: 0.039292
+ - SectorNum: 2
+   SectorStartPct: 0.095476
+ - SectorNum: 3
+   SectorStartPct: 0.203298
+ - SectorNum: 4
+   SectorStartPct: 0.316662
+ - SectorNum: 5
+   SectorStartPct: 0.383406
+ - SectorNum: 6
+   SectorStartPct: 0.472165
+ - SectorNum: 7
+   SectorStartPct: 0.555580
+ - SectorNum: 8
+   SectorStartPct: 0.636718
+ - SectorNum: 9
+   SectorStartPct: 0.716912
+ - SectorNum: 10
+   SectorStartPct: 0.802582
+ - SectorNum: 11
+   SectorStartPct: 0.945397
+
+CarSetup:
+ UpdateCount: 1
+ Suspension:
+  Front:
+   ToeIn: -2 mm
+   CrossWeight: 49.4%
+   AntiRollBar: Med
+  LeftFront:
+   ColdPressure: 172 kPa
+   LastHotPressure: 172 kPa
+   LastTempsOMI: 39C, 39C, 39C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2717 N
+   RideHeight: 116 mm
+   SpringPerchOffset: 64 mm
+   BumpStiffness: +6 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -4.2 deg
+  LeftRear:
+   ColdPressure: 172 kPa
+   LastHotPressure: 172 kPa
+   LastTempsOMI: 39C, 39C, 39C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2349 N
+   RideHeight: 122 mm
+   SpringPerchOffset: 40 mm
+   BumpStiffness: +6 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -2.9 deg
+  RightFront:
+   ColdPressure: 176 kPa
+   LastHotPressure: 176 kPa
+   LastTempsIMO: 39C, 39C, 39C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2425 N
+   RideHeight: 117 mm
+   SpringPerchOffset: 70 mm
+   BumpStiffness: +6 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -4.3 deg
+  RightRear:
+   ColdPressure: 172 kPa
+   LastHotPressure: 172 kPa
+   LastTempsIMO: 39C, 39C, 39C
+   TreadRemaining: 100%, 100%, 100%
+   CornerWeight: 2179 N
+   RideHeight: 123 mm
+   SpringPerchOffset: 43 mm
+   BumpStiffness: +8 clicks
+   ReboundStiffness: +11 clicks
+   Camber: -3.0 deg
+  Rear:
+   FuelLevel: 13.5 L
+   ToeIn: -1 mm
+   AntiRollBar: OEM
+
+...
+AirDensity                      1.1428357362747192
+AirPressure                     27.785728454589844
+AirTemp                         25.545921325683594
+Brake                           1.0
+BrakeRaw                        0.4999922811985016
+CamCameraNumber                 1
+CamCameraState                  80
+CamCarIdx                       0
+CamGroupNumber                  9
+CarIdxClassPosition             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+CarIdxEstTime                   [576.2562255859375, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+CarIdxF2Time                    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+CarIdxGear                      [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxLap                       [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxLapCompleted              [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxLapDistPct                [0.012548592872917652, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+CarIdxOnPitRoad                 [True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+CarIdxPosition                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+CarIdxRPM                       [300.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+CarIdxSteer                     [-0.0069189234636723995, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+CarIdxTrackSurface              [1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarIdxTrackSurfaceMaterial      [5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+CarLeftRight                    1
+Clutch                          0.5001232624053955
+CpuUsageBG                      0.21199992299079895
+DCDriversSoFar                  1
+DCLapStatus                     2
+dcStarter                       False
+DisplayUnits                    1
+dpFastRepair                    0.0
+dpFuelAddKg                     0.0
+dpFuelFill                      0.0
+dpLFTireChange                  0.0
+dpLFTireColdPress               172.3689422607422
+dpLRTireChange                  0.0
+dpLRTireColdPress               172.3689422607422
+dpRFTireChange                  0.0
+dpRFTireColdPress               175.715576171875
+dpRRTireChange                  0.0
+dpRRTireColdPress               172.3689422607422
+dpWindshieldTearoff             0.0
+DriverMarker                    False
+EngineWarnings                  14
+EnterExitReset                  1
+FogLevel                        0.0
+FrameRate                       77.7636947631836
+FuelLevel                       13.49599838256836
+FuelLevelPct                    0.29999998211860657
+FuelPress                       0.0
+FuelUsePerHour                  0.0
+Gear                            0
+HandbrakeRaw                    0.0
+IsDiskLoggingActive             True
+IsDiskLoggingEnabled            True
+IsInGarage                      False
+IsOnTrack                       True
+IsOnTrackCar                    True
+IsReplayPlaying                 False
+Lap                             0
+LapBestLap                      0
+LapBestLapTime                  0.0
+LapBestNLapLap                  0
+LapBestNLapTime                 0.0
+LapCompleted                    -1
+LapCurrentLapTime               0.0
+LapDeltaToBestLap               0.0
+LapDeltaToBestLap_DD            0.0
+LapDeltaToBestLap_OK            False
+LapDeltaToOptimalLap            0.0
+LapDeltaToOptimalLap_DD         0.0
+LapDeltaToOptimalLap_OK         False
+LapDeltaToSessionBestLap        0.0
+LapDeltaToSessionBestLap_DD     0.0
+LapDeltaToSessionBestLap_OK     False
+LapDeltaToSessionLastlLap       0.0
+LapDeltaToSessionLastlLap_DD    0.0
+LapDeltaToSessionLastlLap_OK    False
+LapDeltaToSessionOptimalLap     0.0
+LapDeltaToSessionOptimalLap_DD  0.0
+LapDeltaToSessionOptimalLap_OK  False
+LapDist                         296.788330078125
+LapDistPct                      0.012548592872917652
+LapLasNLapSeq                   0
+LapLastLapTime                  0.0
+LapLastNLapTime                 0.0
+LatAccel                        -0.47094517946243286
+LatAccel_ST                     [-0.4727877676486969, -0.46875888109207153, -0.46795687079429626, -0.46829235553741455, -0.4691883325576782, -0.47094517946243286]
+LFbrakeLinePress                77.21905517578125
+LFcoldPressure                  172.3689422607422
+LFshockDefl                     0.13191109895706177
+LFshockDefl_ST                  [0.13191097974777222, 0.1319110095500946, 0.1319109946489334, 0.1319109946489334, 0.13191106915473938, 0.13191109895706177]
+LFshockVel                      -4.328950308263302e-05
+LFshockVel_ST                   [-3.6128411011304706e-05, 3.322929114801809e-05, 4.372733747004531e-05, 2.599694016680587e-05, -6.04767665208783e-05, -4.328950308263302e-05]
+LFtempCL                        39.34454345703125
+LFtempCM                        39.34454345703125
+LFtempCR                        39.34454345703125
+LFwearL                         1.0
+LFwearM                         1.0
+LFwearR                         1.0
+LoadNumTextures                 False
+LongAccel                       -0.14549879729747772
+LongAccel_ST                    [-0.1448586881160736, -0.14532262086868286, -0.14551007747650146, -0.1455106884241104, -0.14511658251285553, -0.14549879729747772]
+LRbrakeLinePress                30.887619018554688
+LRcoldPressure                  172.3689422607422
+LRshockDefl                     0.128548726439476
+LRshockDefl_ST                  [0.12854866683483124, 0.12854863703250885, 0.1285487711429596, 0.12854859232902527, 0.12854863703250885, 0.128548726439476]
+LRshockVel                      -9.843676525633782e-05
+LRshockVel_ST                   [4.932734009344131e-05, 3.199984712409787e-05, -3.929681042791344e-05, -4.366887515061535e-05, -7.40322211640887e-05, -9.843676525633782e-05]
+LRtempCL                        39.34454345703125
+LRtempCM                        39.34454345703125
+LRtempCR                        39.34454345703125
+LRwearL                         1.0
+LRwearM                         1.0
+LRwearR                         1.0
+ManifoldPress                   0.9412374496459961
+ManualBoost                     False
+ManualNoBoost                   False
+OilLevel                        6.400000095367432
+OilPress                        3.401249841772369e-07
+OilTemp                         77.0
+OkToReloadTextures              True
+OnPitRoad                       True
+Pitch                           0.014806470833718777
+PitchRate                       -1.3327547094377223e-05
+PitchRate_ST                    [-2.62959765677806e-05, -2.7503865567268804e-05, -1.967734715435654e-05, -1.9991957742604427e-05, -1.818658347474411e-05, -1.3327547094377223e-05]
+PitOptRepairLeft                0.0
+PitRepairLeft                   0.0
+PitsOpen                        True
+PitSvFlags                      0
+PitSvFuel                       0.0
+PitSvLFP                        172.3689422607422
+PitSvLRP                        172.3689422607422
+PitSvRFP                        175.71559143066406
+PitSvRRP                        172.3689422607422
+PlayerCarClassPosition          0
+PlayerCarDriverIncidentCount    0
+PlayerCarIdx                    0
+PlayerCarInPitStall             True
+PlayerCarMyIncidentCount        0
+PlayerCarPitSvStatus            0
+PlayerCarPosition               0
+PlayerCarTeamIncidentCount      0
+PlayerCarTowTime                0.0
+PlayerCarWeightPenalty          0.0
+PlayerTrackSurface              1
+PlayerTrackSurfaceMaterial      5
+PushToPass                      False
+RaceLaps                        0
+RadioTransmitCarIdx             -1
+RadioTransmitFrequencyIdx       0
+RadioTransmitRadioIdx           0
+RelativeHumidity                0.5503326058387756
+ReplayFrameNum                  0
+ReplayFrameNumEnd               4863
+ReplayPlaySlowMotion            False
+ReplayPlaySpeed                 1
+ReplaySessionNum                -1
+ReplaySessionTime               0.0
+RFbrakeLinePress                77.21905517578125
+RFcoldPressure                  175.71559143066406
+RFshockDefl                     0.13160954415798187
+RFshockDefl_ST                  [0.1316099762916565, 0.1316099613904953, 0.131609708070755, 0.13160963356494904, 0.13160936534404755, 0.13160954415798187]
+RFshockVel                      2.9006188924540766e-05
+RFshockVel_ST                   [4.998907388653606e-05, -2.4331900931429118e-05, -5.2357601816765964e-05, -7.159178494475782e-05, 8.271443221019581e-06, 2.9006188924540766e-05]
+RFtempCL                        39.34454345703125
+RFtempCM                        39.34454345703125
+RFtempCR                        39.34454345703125
+RFwearL                         1.0
+RFwearM                         1.0
+RFwearR                         1.0
+Roll                            -0.04796185716986656
+RollRate                        4.5585660700453445e-05
+RollRate_ST                     [7.313564856303856e-05, 3.400078639970161e-05, 6.735558599757496e-06, -3.31938463205006e-05, -5.542310464079492e-05, -9.097653673961759e-05]
+RPM                             300.0
+RRbrakeLinePress                30.887619018554688
+RRcoldPressure                  172.3689422607422
+RRshockDefl                     0.12360982596874237
+RRshockDefl_ST                  [0.1236097440123558, 0.12361007928848267, 0.12360971421003342, 0.12360977381467819, 0.12360972166061401, 0.12360982596874237]
+RRshockVel                      9.398202382726595e-05
+RRshockVel_ST                   [6.643500091740862e-05, -6.422793831006857e-06, -0.00011248154623899609, -8.007964788703248e-05, 4.870488555752672e-05, 9.398202382726595e-05]
+RRtempCL                        39.34454345703125
+RRtempCM                        39.34454345703125
+RRtempCR                        39.34454345703125
+RRwearL                         1.0
+RRwearM                         1.0
+RRwearR                         1.0
+SessionFlags                    268698112
+SessionLapsRemain               32767
+SessionLapsRemainEx             32767
+SessionNum                      0
+SessionState                    4
+SessionTick                     21211
+SessionTime                     316.89999084468377
+SessionTimeOfDay                54316.0
+SessionTimeRemain               604800.0
+SessionUniqueID                 1
+ShiftGrindRPM                   0.0
+ShiftIndicatorPct               0.0
+ShiftPowerPct                   0.0
+Skies                           1
+Speed                           0.011108401231467724
+SteeringWheelAngle              -0.0069189234636723995
+SteeringWheelAngleMax           17.278642654418945
+SteeringWheelPctDamper          0.0
+SteeringWheelPctTorque          0.010239087045192719
+SteeringWheelPctTorqueSign      0.010239087045192719
+SteeringWheelPctTorqueSignStops 0.010239087045192719
+SteeringWheelPeakForceNm        23.0
+SteeringWheelTorque             0.23562659323215485
+SteeringWheelTorque_ST          [0.23582591116428375, 0.23594582080841064, 0.2356221228837967, 0.23516550660133362, 0.23480798304080963, 0.23562659323215485]
+Throttle                        0.0
+ThrottleRaw                     0.4998767077922821
+TireLF_RumblePitch              0.0
+TireLR_RumblePitch              0.0
+TireRF_RumblePitch              0.0
+TireRR_RumblePitch              0.0
+TrackTemp                       46.111114501953125
+TrackTempCrew                   46.111114501953125
+VelocityX                       -0.010956702753901482
+VelocityX_ST                    [-0.010954398661851883, -0.010956141166388988, -0.010957654565572739, -0.010958812199532986, -0.010958611033856869, -0.010956702753901482]
+VelocityY                       -0.0018295471090823412
+VelocityY_ST                    [-0.0018070503138005733, -0.0018121699104085565, -0.0018160877516493201, -0.0018224784871563315, -0.0018268751446157694, -0.0018295471090823412]
+VelocityZ                       -8.311742567457259e-05
+VelocityZ_ST                    [-0.00011558063852135092, -0.0001058713678503409, -0.00010756445408333093, -9.594469156581908e-05, -8.970619819592685e-05, -8.311742567457259e-05]
+VertAccel                       9.796671867370605
+VertAccel_ST                    [9.796289443969727, 9.797794342041016, 9.793689727783203, 9.798481941223145, 9.79654598236084, 9.796671867370605]
+Voltage                         0.0
+WaterLevel                      5.0
+WaterTemp                       77.0
+WeatherType                     3
+WindDir                         0.0
+WindVel                         0.8939999938011169
+Yaw                             -2.371271848678589
+YawNorth                        3.915836811065674
+YawRate                         2.010968955801218e-06
+YawRate_ST                      [-5.6893322835094295e-06, -4.8076894927362446e-06, -6.020664841344114e-06, -3.7894747038080823e-06, -1.0370839618190075e-06, 2.010968955801218e-06]
