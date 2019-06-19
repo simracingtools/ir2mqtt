@@ -108,6 +108,9 @@ def check_iracing():
                 for ind in ser:
                     try:
                         ser[ind].open()
+                        print('Serial port ' + ind + ' open')
+                        if debug:
+                            print('DEBUG: ' + str(ser[ind]))
                     except Exception:
                         print('Unable to open port ' + ser[ind].port + '. Serial communication is disabled')
                     
@@ -175,33 +178,33 @@ def publishLightInfo(dateAndTime):
         mqtt_publish('lightinfo', lightinfo)
 
 def readSerialData(connection):
-    try: 
         # Check if data is available on serial port
-        telegram = str(connection.readline())
-    
-        try:
-            # Determine the telegram part in serial data
-            start = telegram.index('#')
-            end = telegram.index('*')
-            telegram = telegram[start + 1:end]
-            print('SERIAL[' + str(connection.port) + ']< ' + telegram)
-            keyvalue = telegram.split('=')
-    
-            # Check if telegram key and send the appropriate pit command to iRacing
-            if len(keyvalue) == 2:
-                if keyvalue[0] == 'PFU':
-                    if debug:
-                        print('DEBUG: send fuel pit command ' + int(keyvalue[1]) + ' l')
-                    ir.pit_command(PitCommandMode.fuel , int(keyvalue[1]))
-                if keyvalue[0] == 'PCM':
-                    if debug:
-                        print('DEBUG: send pit command ' + int(keyvalue[1]))
-                    ir.pit_command(int(keyvalue[1]))
-        except Exception as e:
-            if debug:
-                print('DEBUG: error processing telegram ' + telegram + ' : ' + str(e))
-    except Exception as e:
-        print('Error processing telegram: ' + str(e))
+        if connection.in_waiting:
+            telegram = connection.readline().decode('ascii')
+        
+            try:
+                if len(telegram) > 0:
+                    # Determine the telegram part in serial data
+                    start = telegram.index('#')
+                    end = telegram.index('*')
+                    telegram = telegram[start + 1:end]
+                    print('SERIAL[' + str(connection.port) + ']< ' + telegram)
+                    keyvalue = telegram.split('=')
+            
+                    # Check if telegram key and send the appropriate pit command to iRacing
+                    if len(keyvalue) == 2:
+                        if keyvalue[0] == 'PFU':
+                            if debug:
+                                print('DEBUG: send fuel pit command ' + int(keyvalue[1]) + ' l')
+                            ir.pit_command(PitCommandMode.fuel , int(keyvalue[1]))
+                        if keyvalue[0] == 'PCM':
+                            if debug:
+                                print('DEBUG: send pit command ' + int(keyvalue[1]))
+                            ir.pit_command(int(keyvalue[1]))
+            except Exception as e:
+                if debug:
+                    print('DEBUG: error processing telegram ' + telegram + ' : ' + str(e))
+            
 
 def getIrsdkValue(top):
     ind = top.split('/')
@@ -301,8 +304,18 @@ def loop():
                     print('error getting value of ' + str(ind) + str(e))
 
         for ind in ser:
-            if ser[ind].is_open:
-                readSerialData(ser[ind])
+            try: 
+                if ser[ind].is_open:
+                    readSerialData(ser[ind])
+                elif useSerial:
+                    ser[ind].open()
+            except serial.serialutil.SerialException as e:
+                print('Error on serial connection ' + ind + ': ' + str(e))
+                if useSerial:
+                    try:
+                        ser[ind].close()
+                    except serial.serialutil.SerialException:
+                        print('Error re-opening serial connection ' + ind + ': ' + str(ser[ind]))
 
 
 def mqtt_publish(topic, data):
@@ -377,6 +390,8 @@ if __name__ == '__main__':
     if config.has_option('global', 'serial'):
         ports = config['global']['serial'].split(',')
         useSerial = True
+        if debug:
+            print('DEBUG: pySerial version: ' + serial.__version__)
         for port in ports:
             ser[port] = serial.Serial()
             ser[port].port = port
