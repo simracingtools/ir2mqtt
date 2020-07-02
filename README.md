@@ -37,7 +37,7 @@ No build steps are necessary to execute the python script:
     
 To create a self-contained executable:
 
-    pyinstaller -F --add-binary <your python path>\Lib\site-packages\timezonefinder;timezonefinder ir2mqtt.py
+    pyinstaller --clean -F --add-binary "<your python path>\Lib\site-packages\timezonefinder;timezonefinder" ir2mqtt.py
 
 ## Configuration
 
