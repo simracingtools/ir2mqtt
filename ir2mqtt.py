@@ -137,8 +137,8 @@ def publishSessionTime():
     
     # Get the simulated time of day from IRSDK
     sToD = ir['SessionTimeOfDay']
-    #if sToD < 3600:
-    #    return
+    if sToD < 3600:
+        return
 
     tod = time.localtime(float(sToD)-3600)
     dat = ir['WeekendInfo']['WeekendOptions']['Date'].split('-')
