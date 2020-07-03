@@ -36,7 +36,10 @@ import paho.mqtt.client as mqtt
 import configparser
 import yaml
 import serial
+from astral import Observer
+from astral import SunDirection
 from astral import sun
+from astral import LocationInfo
 import timezonefinder
 import pytz
 from datetime import datetime
@@ -125,12 +128,17 @@ def check_iracing():
             state.elevation = float(str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m'))
             state.timezone = pytz.timezone(timeZoneFinder.certain_timezone_at(lng=state.longitude, lat=state.latitude))
 
+            location = Observer(state.latitude, state.longitude, state.elevation)
+
+            if debug:
+                print(location)
+
 def publishSessionTime():
     
     # Get the simulated time of day from IRSDK
     sToD = ir['SessionTimeOfDay']
-    if sToD < 3600:
-        return
+    #if sToD < 3600:
+    #    return
 
     tod = time.localtime(float(sToD)-3600)
     dat = ir['WeekendInfo']['WeekendOptions']['Date'].split('-')
@@ -151,12 +159,12 @@ def publishLightInfo(dateAndTime):
         print("Could not determine the time zone")
     else:
         # Calculate solar elevation and twilight start and end times
-        angle = sun.solar_elevation(dateAndTime, state.latitude, state.longitude)
+        angle = sun.elevation(location, dateAndTime)
         print('solar elevation: ' + str(angle))
         mqtt_publish('solarElevation', str(angle))
         
-        times_setting = sun.twilight_utc(sun.SUN_SETTING, dateAndTime, state.latitude, state.longitude, state.elevation)
-        times_rising = sun.twilight_utc(sun.SUN_RISING, dateAndTime, state.latitude, state.longitude, state.elevation)
+        times_setting = sun.twilight(location, dateAndTime, SunDirection.SETTING)
+        times_rising = sun.twilight(location, dateAndTime, SunDirection.RISING)
         if debug:
             print("DEBUG: rising start  " + str(times_rising[0].astimezone(state.timezone)))
             print("DEBUG: rising end    " + str(times_rising[1].astimezone(state.timezone)))
@@ -405,6 +413,7 @@ if __name__ == '__main__':
         print('using COM port: ' + str(ser[ind].port))
     # Initialize astronomical calculator and timezone finder
     sun.solar_depression = 'civil'
+    location = Observer()
     timeZoneFinder = timezonefinder.TimezoneFinder()
 
     try:
