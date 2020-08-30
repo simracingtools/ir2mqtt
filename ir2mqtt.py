@@ -28,7 +28,7 @@ __email__ =  "rbausdorf@gmail.com"
 __license__ = "GPLv3"
 #__maintainer__ = "developer"
 __status__ = "Production"
-__version__ = "1.5"
+__version__ = "1.6"
 
 import irsdk
 import time
@@ -82,7 +82,7 @@ def check_iracing():
         state.latitude = -1
         state.longitude = -1
         state.elevation = -1
-        state.timezone = -1
+        state.timezone = ''
         state.mqttdict = {}
 
         # Close serial port to buttonbox
@@ -126,12 +126,15 @@ def check_iracing():
             state.latitude = float(str(ir['WeekendInfo']['TrackLatitude']).rstrip(' m'))
             state.longitude = float(str(ir['WeekendInfo']['TrackLongitude']).rstrip(' m'))
             state.elevation = float(str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m'))
-            state.timezone = pytz.timezone(timeZoneFinder.certain_timezone_at(lng=state.longitude, lat=state.latitude))
+            closestTimezone = timeZoneFinder.closest_timezone_at(lng=state.longitude, lat=state.latitude)
+            state.timezone = pytz.timezone(closestTimezone)
 
             location = Observer(state.latitude, state.longitude, state.elevation)
+            print('Location: ', location)
 
-            if debug:
-                print(location)
+            locationInfo = LocationInfo(ir['WeekendInfo']['TrackCity'], 
+                    ir['WeekendInfo']['TrackCountry'], state.timezone, state.latitude, state.longitude)
+            print('LocationInfo: ', locationInfo)
 
 def publishSessionTime():
     
@@ -145,9 +148,10 @@ def publishSessionTime():
 
     # Create a datetime object WITHOUT timezone info so it can be localized to
     # the tracks timezone
-    state.date_time = state.timezone.localize(datetime(int(dat[0]), int(dat[1]), int(dat[2]), tod.tm_hour, tod.tm_min, tod.tm_sec))
+#    state.date_time = state.timezone.localize(datetime(int(dat[0]), int(dat[1]), int(dat[2]), tod.tm_hour, tod.tm_min, tod.tm_sec))
+    state.date_time = datetime(int(dat[0]), int(dat[1]), int(dat[2]), tod.tm_hour, tod.tm_min, tod.tm_sec, tzinfo=pytz.utc)
     # Display the current time in that time zone
-    print('session ToD:', state.date_time.isoformat('T'))
+    print('session ToD:', state.date_time.isoformat('T'), " TZ:", str(state.timezone))
 
     # Publish using the timezone from configuration
     mqtt_publish('ToD', datetime.strftime(state.date_time.astimezone(pytz.timezone(config['mqtt']['timezone'])), "%Y-%m-%dT%H:%M:%S%z"))
