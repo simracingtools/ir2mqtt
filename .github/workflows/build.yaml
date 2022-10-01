@@ -1,0 +1,40 @@
+name: Build application
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m venv .\venv
+          .\venv\Scripts\Activate.ps1
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          pip install -r requirements.txt
+      - name: Build with executable and setup
+        run: |
+          pyinstaller --clean -F --add-binary ".\venv\Lib\site-packages\timezonefinder;timezonefinder" ir2mqtt.py
+      - name: Upload setup
+        uses: actions/upload-artifact@v3
+        with:
+          name: ir2mqtt executable
+          path: |
+            dist/ir2mqtt.exe
+            dist/ir2mqtt.ini
+
