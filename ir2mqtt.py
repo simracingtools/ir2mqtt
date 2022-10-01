@@ -15,37 +15,27 @@ This program is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
+this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 __author__ = "Robert Bausdorf"
 __contact__ = "rbausdorf@gmail.com"
 __copyright__ = "2019, bausdorf engineering"
-#__credits__ = ["One developer", "And another one", "etc"]
 __date__ = "2019/06/01"
 __deprecated__ = False
-__email__ =  "rbausdorf@gmail.com"
+__email__ = "rbausdorf@gmail.com"
 __license__ = "GPLv3"
-#__maintainer__ = "developer"
 __status__ = "Production"
-__version__ = "1.6"
+__version__ = "1.7"
 
 import irsdk
 import time
 import paho.mqtt.client as mqtt
 import configparser
-import yaml
 import serial
-from astral import Observer
-from astral import SunDirection
-from astral import sun
-from astral import LocationInfo
-import timezonefinder
 import pytz
+from location import IrLocation
 from datetime import datetime
-from datetime import date
-from datetime import time as dttime
-from datetime import tzinfo
 from irsdk import PitCommandMode
 
 debug = False
@@ -54,41 +44,42 @@ debug = False
 # this is our State class, with some helpful variables
 class State:
     ir_connected = False
-    date_time = -1
+    local_date_time: datetime
     tick = 0
     latitude = -1
     longitude = -1
     elevation = -1
-    mqttdict = {}
-    mqttConnected = False
+    mqtt_dict = {}
+    mqtt_connected = False
+    ir_location: IrLocation
 
-# Possible states given in Paho MQTT client callbacks 
-mqttRC = ['Connection successful', 
-          'Connection refused - incorrect protocol version', 
-          'Connection refused - invalid client identifier', 
-          'Connection refused - server unavailable', 
-          'Connection refused - bad username or password', 
-          'Connection refused - not authorised']
 
-# here we check if we are connected to iracing
-# so we can retrieve some data
-def check_iracing():        
-    
+# Possible states given in Paho MQTT client callbacks
+mqtt_RC = ['Connection successful',
+           'Connection refused - incorrect protocol version',
+           'Connection refused - invalid client identifier',
+           'Connection refused - server unavailable',
+           'Connection refused - bad username or password',
+           'Connection refused - not authorised']
+
+
+# here we check if we are connected to iracing, so we can retrieve some data
+def check_iracing():
     if state.ir_connected and not (ir.is_initialized and ir.is_connected):
         state.ir_connected = False
         # don't forget to reset all your in State variables
-        state.date_time = -1
+        state.local_date_time = None
         state.tick = 0
         state.latitude = -1
         state.longitude = -1
         state.elevation = -1
-        state.timezone = ''
-        state.mqttdict = {}
+        state.mqtt_dict = {}
+        state.ir_location = None
 
         # Close serial port to buttonbox
-        for ind in ser:
-            if ser[ind].is_open:
-                ser[ind].close()
+        for ser_ind in ser:
+            if ser[ser_ind].is_open:
+                ser[ser_ind].close()
 
         # we are shut down ir library (clear all internal variables)
         ir.shutdown()
@@ -108,123 +99,109 @@ def check_iracing():
             state.ir_connected = True
             # Check need and open serial connection
             if config.has_option('global', 'serial'):
-                for ind in ser:
+                for ser_ind in ser:
                     try:
-                        ser[ind].open()
-                        print('Serial port ' + ind + ' open')
+                        ser[ser_ind].open()
+                        print('Serial port ' + ser_ind + ' open')
                         if debug:
-                            print('DEBUG: ' + str(ser[ind]))
+                            print('DEBUG: ' + str(ser[ser_ind]))
                     except Exception:
-                        print('Unable to open port ' + ser[ind].port + '. Serial communication is disabled')
-                    
+                        print('Unable to open port ' + ser[ser_ind].port + '. Serial communication is disabled')
+
             print('irsdk connected')
-            if state.mqttConnected:
+            if state.mqtt_connected:
                 mqtt_publish('state', 1)
-            
+
             # Get geographical track information and track timezone for
             # astronomical calculations
             state.latitude = float(str(ir['WeekendInfo']['TrackLatitude']).rstrip(' m'))
             state.longitude = float(str(ir['WeekendInfo']['TrackLongitude']).rstrip(' m'))
             state.elevation = float(str(ir['WeekendInfo']['TrackAltitude']).rstrip(' m'))
-            closestTimezone = timeZoneFinder.closest_timezone_at(lng=state.longitude, lat=state.latitude)
-            state.timezone = pytz.timezone(closestTimezone)
 
-            location = Observer(state.latitude, state.longitude, state.elevation)
-            print('Location: ', location)
+            state.ir_location = IrLocation(ir['WeekendInfo']['WeekendOptions']['Date'],
+                                           state.latitude, state.longitude, state.elevation,
+                                           ir['WeekendInfo']['TrackCity'], ir['WeekendInfo']['TrackCountry'])
+            print('Location: ', state.ir_location.observer)
+            print('LocationInfo: ', state.ir_location.location_info)
 
-            locationInfo = LocationInfo(ir['WeekendInfo']['TrackCity'], 
-                    ir['WeekendInfo']['TrackCountry'], state.timezone, state.latitude, state.longitude)
-            print('LocationInfo: ', locationInfo)
 
-def publishSessionTime():
-    
+def publish_session_time():
     # Get the simulated time of day from IRSDK
-    sToD = ir['SessionTimeOfDay']
-    if sToD < 3600:
+    tod_str = ir['SessionTimeOfDay']
+    if tod_str < 3600:
         return
 
-    tod = time.localtime(float(sToD)-3600)
-    dat = ir['WeekendInfo']['WeekendOptions']['Date'].split('-')
-
-    # Create a datetime object WITHOUT timezone info so it can be localized to
-    # the tracks timezone
-#    state.date_time = state.timezone.localize(datetime(int(dat[0]), int(dat[1]), int(dat[2]), tod.tm_hour, tod.tm_min, tod.tm_sec))
-    state.date_time = datetime(int(dat[0]), int(dat[1]), int(dat[2]), tod.tm_hour, tod.tm_min, tod.tm_sec, tzinfo=pytz.utc)
+    state.local_date_time = state.ir_location.datetime_no_zone(tod_str)
     # Display the current time in that time zone
-    print('session ToD:', state.date_time.isoformat('T'), " TZ:", str(state.timezone))
+    print('session ToD:', state.local_date_time.isoformat('T'), " TZ:", str(state.ir_location.found_zone))
 
     # Publish using the timezone from configuration
-    mqtt_publish('ToD', datetime.strftime(state.date_time.astimezone(pytz.timezone(config['mqtt']['timezone'])), "%Y-%m-%dT%H:%M:%S%z"))
-    publishLightInfo(state.date_time)
+    mqtt_publish('ToD', datetime.strftime(state.local_date_time.astimezone(pytz.timezone(config['mqtt']['timezone'])),
+                                          "%Y-%m-%dT%H:%M:%S%z"))
+    publish_light_info()
 
-def publishLightInfo(dateAndTime):
 
-    if state.timezone is None:
+def publish_light_info():
+    if state.ir_location.found_zone is None:
         print("Could not determine the time zone")
     else:
         # Calculate solar elevation and twilight start and end times
-        angle = sun.elevation(location, dateAndTime)
+        angle = state.ir_location.solar_elevation(state.local_date_time)
         print('solar elevation: ' + str(angle))
         mqtt_publish('solarElevation', str(angle))
-        
-        times_setting = sun.twilight(location, dateAndTime, SunDirection.SETTING)
-        times_rising = sun.twilight(location, dateAndTime, SunDirection.RISING)
-        if debug:
-            print("DEBUG: rising start  " + str(times_rising[0].astimezone(state.timezone)))
-            print("DEBUG: rising end    " + str(times_rising[1].astimezone(state.timezone)))
-            print("DEBUG: setting start " + str(times_setting[0].astimezone(state.timezone)))
-            print("DEBUG: setting end   " + str(times_setting[1].astimezone(state.timezone)))
+
+        date_and_time = datetime.astimezone(state.ir_location.timezone)
 
         # Classify and publish the current light situation on track as one of
         # night, dawn, day or dusk  
-        lightinfo = 'day'
-        if dateAndTime < times_rising[0].astimezone(state.timezone):
-            lightinfo = 'night'
-        elif dateAndTime < times_rising[1].astimezone(state.timezone):
-            lightinfo = 'dawn'
-        elif dateAndTime < times_setting[0].astimezone(state.timezone):
-            lightinfo = 'day'
-        elif dateAndTime < times_setting[1].astimezone(state.timezone):
-            lightinfo = 'dusk'
+        if date_and_time < state.ir_location.times_sunrise[0]:
+            light_info = 'night'
+        elif date_and_time < state.ir_location.times_sunrise[1]:
+            light_info = 'dawn'
+        elif date_and_time < state.ir_location.times_sunset[0]:
+            light_info = 'day'
+        elif date_and_time < state.ir_location.times_sunset[1]:
+            light_info = 'dusk'
         else:
-            lightinfo = 'night'
+            light_info = 'night'
 
-        print('lightinfo: ' + lightinfo)
-        mqtt_publish('lightinfo', lightinfo)
+        print('lightinfo: ' + light_info)
+        mqtt_publish('lightinfo', light_info)
 
-def readSerialData(connection):
-        # Check if data is available on serial port
-        if connection.in_waiting:
-            telegram = connection.readline().decode('ascii')
-        
-            try:
-                if len(telegram) > 0:
-                    # Determine the telegram part in serial data
-                    start = telegram.index('#')
-                    end = telegram.index('*')
-                    telegram = telegram[start + 1:end]
-                    print('SERIAL[' + str(connection.port) + ']< ' + telegram)
-                    keyvalue = telegram.split('=')
-            
-                    # Check if telegram key and send the appropriate pit command to iRacing
-                    if len(keyvalue) == 2:
-                        if keyvalue[0] == 'PFU':
-                            if debug:
-                                print('DEBUG: send fuel pit command ' + int(keyvalue[1]) + ' l')
-                            ir.pit_command(PitCommandMode.fuel , int(keyvalue[1]))
-                        if keyvalue[0] == 'PCM':
-                            if debug:
-                                print('DEBUG: send pit command ' + int(keyvalue[1]))
-                            ir.pit_command(int(keyvalue[1]))
-            except Exception as e:
-                if debug:
-                    print('DEBUG: error processing telegram ' + telegram + ' : ' + str(e))
-            
 
-def getIrsdkValue(top):
-    ind = top.split('/')
+def read_serial_data(connection):
+    # Check if data is available on serial port
+    if connection.in_waiting:
+        telegram = connection.readline().decode('ascii')
+
+        try:
+            if len(telegram) > 0:
+                # Determine the telegram part in serial data
+                start = telegram.index('#')
+                end = telegram.index('*')
+                telegram = telegram[start + 1:end]
+                print('SERIAL[' + str(connection.port) + ']< ' + telegram)
+                keyvalue = telegram.split('=')
+
+                # Check if telegram key and send the appropriate pit command to iRacing
+                if len(keyvalue) == 2:
+                    if keyvalue[0] == 'PFU':
+                        if debug:
+                            print('DEBUG: send fuel pit command ' + str(int(keyvalue[1])) + ' l')
+                        ir.pit_command(PitCommandMode.fuel, int(keyvalue[1]))
+                    if keyvalue[0] == 'PCM':
+                        if debug:
+                            print('DEBUG: send pit command ' + str(int(keyvalue[1])))
+                        ir.pit_command(int(keyvalue[1]))
+        except Exception as e:
+            if debug:
+                print('DEBUG: error processing telegram ' + telegram + ' : ' + str(e))
+
+
+def get_irsdk_value(top) -> str | int:
+    key_value = top.split('/')
     val = ir
-    for key in ind:
+    for key in key_value:
         if val != None:
             listkey = key.split('[', 1)
             if len(listkey) == 2:
@@ -234,25 +211,26 @@ def getIrsdkValue(top):
                     idx = len(val.__getitem__(listkey[0])) - 1
                 elif listindex[0] == '$':
                     try:
-                        indirection = state.mqttdict[listindex.lstrip('$')]
-                    except KeyError as e:
+                        indirection = state.mqtt_dict[listindex.lstrip('$')]
+                    except KeyError:
                         print('value of "' + listindex.lstrip('$') + '" not avilable at this time')
                 elif listindex[0] == '#':
-                    indirection = getIrsdkValue(listindex.lstrip('#').replace('&', '/'))
+                    indirection = get_irsdk_value(listindex.lstrip('#').replace('&', '/'))
                     if not isinstance(indirection, int):
-                        ixd = int(indirection)
+                        idx = int(indirection)
                     else:
                         idx = indirection
-                     
+
                 else:
                     idx = int(listindex)
 
                 val = val.__getitem__(listkey[0])[idx]
             else:
                 val = val.__getitem__(key)
-    
+
     return val
-    
+
+
 # our main loop, where we retrieve data
 # and do something useful with it
 def loop():
@@ -266,71 +244,73 @@ def loop():
 
     state.tick += 1
     # publish session time and configured telemetry values every minute
-    if state.tick % 60 == 1 and state.mqttConnected:
-        publishSessionTime()
-    
+    if state.tick % 60 == 1 and state.mqtt_connected:
+        publish_session_time()
+
     # read and publish configured telemetry values every second - but only
     # if the value has changed in telemetry
     if config.has_section('iracing'):
         for top in config['iracing']:
+            topic = 'None'
             try:
-                ind = config.get('iracing', top)
-                val = getIrsdkValue(ind)
+                topic = config.get('iracing', top)
+                val = get_irsdk_value(topic)
                 if val != None:
                     try:
-                        lastVal = state.mqttdict[top]
-                        if lastVal == val:
+                        last_val = state.mqtt_dict[top]
+                        if last_val == val:
                             continue
-                        elif state.mqttConnected:
-                            state.mqttdict[top] = val
+                        elif state.mqtt_connected:
+                            state.mqtt_dict[top] = val
                             mqtt_publish(top, val)
                     except KeyError:
-                        if state.mqttConnected:
-                            state.mqttdict[top] = val
+                        if state.mqtt_connected:
+                            state.mqtt_dict[top] = val
                             mqtt_publish(top, val)
-                    
+
             except Exception as e:
-                print('error getting value of ' + str(ind) + str(e))
-                
+                print('error getting value of ' + str(topic) + ': ' +  str(e))
+
     # Read/Write serial data as needed
     if useSerial:
         if config.has_section('serial'):
+            topic = 'None'
             for top in config['serial']:
                 try:
-                    ind = config.get('serial', top)
-                    val = getIrsdkValue(ind)
+                    topic = config.get('serial', top)
+                    val = get_irsdk_value(topic)
                     if val != None:
                         try:
-                            lastVal = state.mqttdict[top]
-                            if lastVal == val:
+                            last_val = state.mqtt_dict[top]
+                            if last_val == val:
                                 continue
                             else:
-                                state.mqttdict[top] = val
+                                state.mqtt_dict[top] = val
                         except KeyError:
-                            state.mqttdict[top] = val
-                        
-                        for ind in ser:
-                            if ser[ind].is_open:
-                                telegram = '#' + top.upper() + '=' + str(val) + '*';
-                                print('SERIAL[' + str(ser[ind].port) + ']> ' + telegram);
-                                ser[ind].write(telegram.encode('ascii'))
+                            state.mqtt_dict[top] = val
+
+                        for ser_index in ser:
+                            if ser[ser_index].is_open:
+                                telegram = '#' + top.upper() + '=' + str(val) + '*'
+                                print('SERIAL[' + str(ser[ser_index].port) + ']> ' + telegram)
+                                ser[topic].write(telegram.encode('ascii'))
 
                 except Exception as e:
-                    print('error getting value of ' + str(ind) + str(e))
+                    print('error getting value of ' + str(topic) + str(e))
 
-        for ind in ser:
-            try: 
-                if ser[ind].is_open:
-                    readSerialData(ser[ind])
+        for ser_index in ser:
+            try:
+                if ser[ser_index].is_open:
+                    read_serial_data(ser[ser_index])
                 elif useSerial:
-                    ser[ind].open()
+                    ser[ser_index].open()
             except serial.serialutil.SerialException as e:
-                print('Error on serial connection ' + ind + ': ' + str(e))
+                print('Error on serial connection ' + ser_index + ': ' + str(e))
                 if useSerial:
                     try:
-                        ser[ind].close()
+                        ser[ser_index].close()
                     except serial.serialutil.SerialException:
-                        print('Error re-opening serial connection ' + ind + ': ' + str(ser[ind]))
+                        print('Error re-opening serial connection ' + ser_index + ': ' + str(ser[ser_index]))
 
 
 def mqtt_publish(topic, data):
@@ -339,26 +319,29 @@ def mqtt_publish(topic, data):
     if debug:
         print('DEBUG mqtt_publish(' + top + ', ' + str(data) + ')')
 
-# Paho MQTT callback 
+
+# Paho MQTT callback
 def on_connect(client, userdata, flags, rc):
-    print('MQTT: ' + mqttRC[rc])
-    if rc==0:
-        state.mqttConnected = True
+    print('MQTT: ' + mqtt_RC[rc])
+    if rc == 0:
+        state.mqtt_connected = True
         if state.ir_connected:
             mqtt_publish('state', 1)
-            if state.date_time == -1:
-                publishSessionTime() 
+            if state.local_date_time == -1:
+                publish_session_time()
     else:
-        print("Bad connection Returned code=",rc)
+        print("Bad connection Returned code=", rc)
+
 
 # Paho MQTT callback
 def on_disconnect(client, userdata, rc):
-    state.mqttConnected = False
-    if rc==0:
+    state.mqtt_connected = False
+    if rc == 0:
         print('MQTT: connection terminated')
     else:
         print('MQTT: connection terminated unexpectedly')
-        
+
+
 def banner():
     print("=============================")
     print("|         IR2MQTT           |")
@@ -368,14 +351,15 @@ def banner():
     print("MQTT port: " + config['mqtt']['port'])
     print("MQTT base: " + config['mqtt']['baseTopic'])
 
+
 # Here is our main program entry
 if __name__ == '__main__':
     # Read configuration file
-    config = configparser.ConfigParser()    
-    try: 
+    config = configparser.ConfigParser()
+    try:
         config.read('ir2mqtt.ini')
     except Exception:
-        print('unable to read configuration: ' + Exception.__cause__)
+        print('unable to read configuration: ' + str(Exception.__cause__))
 
     # Print banner an debug output status
     banner()
@@ -391,8 +375,8 @@ if __name__ == '__main__':
 
     # Initialize and connect MQTT client to configured broker
     mqttClient = mqtt.Client("irClient")
-    mqttClient.on_connect=on_connect
-    mqttClient.on_disconnect=on_disconnect
+    mqttClient.on_connect = on_connect
+    mqttClient.on_disconnect = on_disconnect
     mqttClient.loop_start()
     try:
         mqttClient.connect(config['mqtt']['host'], int(config['mqtt']['port']))
@@ -400,7 +384,7 @@ if __name__ == '__main__':
         print('unable to connect to mqtt broker')
 
     # Initialize and configure serial port
-    ser = {} #serial.Serial()
+    ser = {}  # serial.Serial()
     useSerial = False
     if config.has_option('global', 'serial'):
         ports = config['global']['serial'].split(',')
@@ -415,17 +399,13 @@ if __name__ == '__main__':
 
     for ind in ser:
         print('using COM port: ' + str(ser[ind].port))
-    # Initialize astronomical calculator and timezone finder
-    sun.solar_depression = 'civil'
-    location = Observer()
-    timeZoneFinder = timezonefinder.TimezoneFinder()
 
     try:
         # infinite loop
         while True:
             # check if we are connected to iracing
             check_iracing()
-                
+
             # if we are, then process data
             if state.ir_connected:
                 loop()
@@ -439,7 +419,7 @@ if __name__ == '__main__':
         print('exiting')
         if state.ir_connected:
             mqtt_publish('state', 0)
-        
+
         if useSerial:
             for ind in ser:
                 if ser[ind].is_open:
@@ -448,4 +428,3 @@ if __name__ == '__main__':
         mqttClient.loop_stop()
         mqttClient.disconnect()
         time.sleep(2)
-        pass

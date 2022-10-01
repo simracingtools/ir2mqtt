@@ -1,4 +1,5 @@
 /__pycache__/
 /build/
 /ir2mqtt.spec
-/dist/
+/dist/ir2mqtt.exe
+/.idea/
