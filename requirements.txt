@@ -1,7 +1,7 @@
 pyirsdk
-paho-mqtt~=1.6.1
-pyserial~=3.5
-astral~=2.2
+paho-mqtt
+pyserial
+astral
 pyinstaller
 timezonefinder
-pytz~=2022.2.1
+pytz

@@ -72,7 +72,7 @@ class IrLocation:
         print("sunset end   " + str(self.times_sunset[1]))
 
     def datetime_no_zone(self, time_of_day: str) -> datetime:
-        local_time = time.localtime(float(time_of_day) - 3600)
+        local_time = time.localtime(float(time_of_day))
 
         # Create a datetime object WITHOUT timezone info, so it can be localized to the tracks timezone
         return datetime(int(self.date_array[0]), int(self.date_array[1]), int(self.date_array[2]),
@@ -89,13 +89,13 @@ class IrLocation:
 
 
 if __name__ == '__main__':
-    latitude = 34.15219
-    longitude = -83.81511
-    elevation = 277
+    latitude = 27.450094
+    longitude = -81.351871
+    elevation = 41
     city = "Braselton"
     country = "USA"
-    iracing_date_str = "2019 - 04 - 01"
-    tod = "48622.0"
+    iracing_date_str = "2023 - 03 - 18"
+    tod = "66922.0"
 
     ir_location = IrLocation(iracing_date_str, latitude, longitude, elevation, city, country)
     date_time_no_zone = ir_location.datetime_no_zone(tod)
